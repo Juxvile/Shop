@@ -39,8 +39,15 @@
 
 .navbar {
   box-shadow: 0 10px 6px -6px #f869f8;
+}
 
-  /* the rest of your styling */
+.games {
+  width: 256px;
+  border: 1px solid lawngreen;
+  margin: 5px;
+  text-align: center;
+  box-shadow: 0 10px 6px -6px lawngreen;
+  height: 300px;
 }
 
 

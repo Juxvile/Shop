@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -23,6 +24,10 @@ public class Product {
 
     private Integer count;
 
+    private String filename;
+
+    private BigDecimal price;
+
     @Override
     public String toString() {
         return "Product{" +
@@ -30,6 +35,8 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", count=" + count +
+                ", filename='" + filename + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

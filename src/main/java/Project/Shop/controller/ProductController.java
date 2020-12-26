@@ -9,11 +9,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class ProductController {
     public final ProductRepository productRepository;
@@ -32,13 +34,9 @@ public class ProductController {
                 .orElseThrow(NotFoundException::new));
     }
 
-
     @PostMapping
-    public void addProduct (@RequestParam String name,
-                            @RequestParam String description,
-                            @RequestParam Integer count,
-                            @Valid Product product
-    ) throws IOException {
-        productService.saveProduct(product, name, description, count);
+    Product newProduct (@RequestBody Product product){
+        return productRepository.save(product);
     }
+
 }
