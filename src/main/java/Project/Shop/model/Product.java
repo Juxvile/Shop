@@ -1,8 +1,6 @@
 package Project.Shop.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,12 +8,15 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
+@Builder
 @Table(name = "products")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @EqualsAndHashCode.Include
     private Long id;
 
     private String name;

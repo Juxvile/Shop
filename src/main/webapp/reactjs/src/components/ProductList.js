@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Col, Container, Row, Image} from "react-bootstrap";
+import {Card, Col, Container, Row} from "react-bootstrap";
 import {getProduct} from "../api/api";
 
 export default class ProductList extends React.Component{
@@ -10,6 +10,7 @@ export default class ProductList extends React.Component{
             games: []
         };
     }
+
 
     componentDidMount() {
         (async ()=>{
@@ -29,8 +30,7 @@ export default class ProductList extends React.Component{
                             {this.state.games.length === 0 ?
                                 <Col align="center"> Games Available.</Col> :
                                 this.state.games.map((game) => (
-                                    <div className="games" key={game.id}>
-                                        <Image src={game.filename}/>
+                                    <div style={{backgroundImage: "url(" + game.filename + ")"}} className="games" key={game.id}>
                                         <p>{game.name}</p>
                                         <p>{game.price}$</p>
                                     </div>

@@ -12,6 +12,7 @@ export default class Product extends React.Component{
         this.submitGame = this.submitGame.bind(this);
     }
 
+
     initialState = {
         name:'', description: '', count: '', price: '', filename: ''
     }
@@ -31,7 +32,7 @@ export default class Product extends React.Component{
             filename: this.state.filename
         };
 
-        axios.post("http://localhost:8085/product", game)
+        axios.post("http://localhost:8085/product/add", game)
             .then(response => {
                 if(response.data !== null) {
                     this.setState(this.initialState);
@@ -39,6 +40,7 @@ export default class Product extends React.Component{
                 }
             });
     }
+
 
     gameChange(event){
         this.setState({
@@ -48,18 +50,20 @@ export default class Product extends React.Component{
 
 
 
+
     render() {
 
         const {name,description,count,price,filename} = this.state;
+
 
         return (
             <Card className={"border border-dark bg-dark text-white"}>
                 <Card.Header align="center">Game Catalog</Card.Header>
 
-                            <Form onReset={this.resetGame} onSubmit={this.submitGame} id="gameFormId">
+                            <Form onReset={this.resetGame} onSubmit={this.submitGame}>
                                 <Card.Body>
                                 <Form.Row>
-                                    <Form.Group as={Col} controlId="formGridName">
+                                    <Form.Group as={Col}>
                                         <Form.Label>Name</Form.Label>
                                         <Form.Control required autoComplete="off"
                                             type="text" name="name"
@@ -67,7 +71,7 @@ export default class Product extends React.Component{
                                             onChange={this.gameChange}
                                             placeholder="Enter Game Name" />
                                     </Form.Group>
-                                    <Form.Group as={Col} controlId="formGridDescription">
+                                    <Form.Group as={Col}>
                                         <Form.Label>Description</Form.Label>
                                         <Form.Control required autoComplete="off"
                                             type="text" name="description"
@@ -77,7 +81,7 @@ export default class Product extends React.Component{
                                     </Form.Group>
                                 </Form.Row>
                                 <Form.Row>
-                                    <Form.Group as={Col} controlId="formGridCount">
+                                    <Form.Group as={Col}>
                                         <Form.Label>Count</Form.Label>
                                         <Form.Control required autoComplete="off"
                                             type="text" name="count"
@@ -85,7 +89,7 @@ export default class Product extends React.Component{
                                             onChange={this.gameChange}
                                             placeholder="Enter amount" />
                                     </Form.Group>
-                                    <Form.Group as={Col} controlId="formGridPrice">
+                                    <Form.Group as={Col}>
                                         <Form.Label>Price</Form.Label>
                                         <Form.Control required autoComplete="off"
                                             type="text" name="price"
@@ -94,13 +98,13 @@ export default class Product extends React.Component{
                                             placeholder="Enter Price" />
                                     </Form.Group>
                                 </Form.Row>
-                                    <Form.Group controlId="formGridFilename">
-                                        <Form.Label>Image URL</Form.Label>
-                                        <Form.Control required autoComplete="off"
-                                            type="text"
-                                            value={filename}
-                                            onChange={this.gameChange}
-                                            name="filename" label="Add Image" />
+                                    <Form.Group as={Col}>
+                                        <Form.Label>FileURL</Form.Label>
+                                        <Form.Control autoComplete="off"
+                                                      type="text" name="filename"
+                                                      value={filename}
+                                                      onChange={this.gameChange}
+                                                      placeholder="Enter File URL" />
                                     </Form.Group>
                                 </Card.Body>
                                         <Card.Footer align="right">
