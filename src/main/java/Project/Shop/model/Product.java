@@ -31,6 +31,8 @@ public class Product {
 
     private String genre;
 
+    private String trailer;
+
     @Override
     public String toString() {
         return "Product{" +
@@ -40,6 +42,8 @@ public class Product {
                 ", count=" + count +
                 ", filename='" + filename + '\'' +
                 ", price=" + price +
+                ", genre='" + genre + '\'' +
+                ", trailer='" + trailer + '\'' +
                 '}';
     }
 }

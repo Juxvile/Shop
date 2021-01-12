@@ -24,7 +24,7 @@ class ProductList extends React.Component{
 
     render() {
         return (
-            <Card className={"border border-dark bg-dark text-white"}>
+            <Card className={"border border-dark bg-dark text-white cards"}>
                 <Card.Header align="center"><h2>Game Catalog</h2></Card.Header>
                 <Card.Body>
                     <Container>
@@ -32,11 +32,15 @@ class ProductList extends React.Component{
                             {this.state.games.length === 0 ?
                                 <Col align="center"> Games Available.</Col> :
                                 this.state.games.map((game) => (
-                                    <NavLink to={'/product/' + game.id} style={{backgroundImage: "url(" + game.filename + ")"}} className="games" key={game.id}>
+                                    <NavLink to={'/product/' + game.id} style={{backgroundImage: "url(" + game.filename + ")",
+                                        backgroundPosition: 'center',
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat',
+                                        textDecoration: 'none'}} className="games" key={game.id}>
                                         <div className="inside">
                                             <p className="name">{game.name}</p>
                                             <p className="name">{game.price}$</p>
-                                            <p>{game.description}</p>
+                                            <p>{game.genre}</p>
                                         </div>
                                     </NavLink>
                                 ))

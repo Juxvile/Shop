@@ -13,7 +13,7 @@ import {SingleProduct} from './components/SingleProduct'
 const App = () => {
 
     const marginTop = {
-        marginTop: "20px"
+        marginTop: "20px",
     };
 
   return (

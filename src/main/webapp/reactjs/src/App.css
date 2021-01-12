@@ -43,14 +43,15 @@
 
 .games {
   width: 256px;
-  border: 1px solid lawngreen;
+  border: 1px solid black;
   margin: 5px;
   text-align: center;
-  box-shadow: 0 10px 6px -6px lawngreen;
+  /*box-shadow: 0 10px 6px -6px #f869f8;*/
   height: 300px;
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 10px;
 }
 
 .name {
@@ -64,12 +65,15 @@
   height: 300px;
   width: 256px;
   opacity: 0;
+  border-radius: 10px;
 }
 
 .inside:hover{
   opacity: 100%;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: #61dafb;
 }
 
 .singleGame {
@@ -80,14 +84,30 @@
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 10px;
+  display: block;
 }
 
 .game {
-  width: 450px;
+  width: 480px;
   height: 600px;
   display: block;
   justify-content: center;
   align-items: stretch;
+}
+
+.cards {
+  border: 1px solid #f869f8;
+  text-align: center;
+  box-shadow: 0 10px 40px 6px #f869f8;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.trailerFrame {
+  width: 500px;
+  height: 300px;
 }
 
 

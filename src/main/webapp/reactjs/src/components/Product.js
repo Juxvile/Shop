@@ -16,7 +16,7 @@ export default class Product extends React.Component{
 
 
     initialState = {
-        name:'', description: '', count: '', price: '', filename: '', genre: ''
+        name:'', description: '', count: '', price: '', filename: '', genre: '', trailer: ''
     }
 
     resetGame = () => {
@@ -32,7 +32,8 @@ export default class Product extends React.Component{
             count: this.state.count,
             price: this.state.price,
             filename: this.state.filename,
-            genre: this.state.genre
+            genre: this.state.genre,
+            trailer: this.state.trailer
         };
 
         axios.post("http://localhost:8085/product/add", game)
@@ -60,7 +61,7 @@ export default class Product extends React.Component{
 
     render() {
 
-        const {name,description,count,price,filename} = this.state;
+        const {name,description,count,price,filename,genre,trailer} = this.state;
 
 
         return (
@@ -68,8 +69,8 @@ export default class Product extends React.Component{
                 <div style={{"display": this.state.show ? "block" : "none"}}>
                     <MyToast children={{show:this.state.show, message:"Game Saved Successfully."}}/>
                 </div>
-                <Card className={"border border-dark bg-dark text-white"}>
-                    <Card.Header align="center"><h2>Game Catalog</h2></Card.Header>
+                <Card className={"border border-dark bg-dark text-white cards"}>
+                    <Card.Header align="center"><h2>Add Game</h2></Card.Header>
 
                     <Form onReset={this.resetGame} onSubmit={this.submitGame}>
                         <Card.Body>
@@ -109,6 +110,7 @@ export default class Product extends React.Component{
                                                   placeholder="Enter Price" />
                                 </Form.Group>
                             </Form.Row>
+                            <Form.Row>
                             <Form.Group as={Col}>
                                 <Form.Label>FileURL</Form.Label>
                                 <Form.Control autoComplete="off"
@@ -116,6 +118,23 @@ export default class Product extends React.Component{
                                               value={filename}
                                               onChange={this.gameChange}
                                               placeholder="Enter File URL" />
+                            </Form.Group>
+                            <Form.Group as={Col}>
+                                    <Form.Label>Genre</Form.Label>
+                                    <Form.Control required autoComplete="off"
+                                                  type="text" name="genre"
+                                                  value={genre}
+                                                  onChange={this.gameChange}
+                                                  placeholder="Enter Genre" />
+                            </Form.Group>
+                            </Form.Row>
+                            <Form.Group as={Col}>
+                                <Form.Label>TrailerURL</Form.Label>
+                                <Form.Control required autoComplete="off"
+                                              type="text" name="trailer"
+                                              value={trailer}
+                                              onChange={this.gameChange}
+                                              placeholder="Enter Trailer URL" />
                             </Form.Group>
                         </Card.Body>
                         <Card.Footer align="right">

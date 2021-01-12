@@ -29,7 +29,7 @@ class SingleProductContainer extends React.Component{
                 <Card.Body>
                     <Container>
                         {this.state.games.map((game) => (
-                            <Row>
+                            <Row key={game.id}>
                                 <Col>
                                     <Image style={{
                                         backgroundImage: "url(" + game.filename + ")",
@@ -39,11 +39,12 @@ class SingleProductContainer extends React.Component{
                                     }} className="game">
                                     </Image>
                                 </Col>
-                                <Col className="singleGame" key={game.id}>
+                                <Col className="singleGame">
                                     <h1>{game.name}</h1>
-                                    <p>{game.description}</p>
-                                    <p>{game.count}</p>
-                                    <p>{game.price}</p>
+                                    <h1>{game.price}$</h1>
+                                    <div>{game.description}</div>
+                                    <br/>
+                                    <iframe title="trailer" className="trailerFrame" src={game.trailer}/>
                                 </Col>
                             </Row>
                         ))}
