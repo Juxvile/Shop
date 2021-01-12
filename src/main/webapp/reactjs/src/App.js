@@ -6,10 +6,11 @@ import Welcome from "./components/Welcome";
 import Footer from "./components/Footer";
 import Product from "./components/Product";
 import ProductList from "./components/ProductList";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {SingleProduct} from './components/SingleProduct'
 
 
-function App() {
+const App = () => {
 
     const marginTop = {
         marginTop: "20px"
@@ -25,6 +26,7 @@ function App() {
                       <Route path="/" exact component={Welcome}/>
                       <Route path="/add" exact component={Product}/>
                       <Route path="/product" exact component={ProductList}/>
+                      <Route path="/product/:id" exact component={SingleProduct}/>
                   </Switch>
               </Col>
           </Row>

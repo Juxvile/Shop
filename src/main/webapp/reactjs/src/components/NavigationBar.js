@@ -2,7 +2,7 @@ import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-class NavigationBar extends React.Component{
+export default class NavigationBar extends React.Component{
     render() {
         return (
             <Navbar bg="dark" variant="dark">
@@ -11,12 +11,10 @@ class NavigationBar extends React.Component{
                 </Link>
 
                 <Nav className="mr-auto">
-                    <Link to={"add"} className="nav-link">Add Product</Link>
-                    <Link to={"product"} className="nav-link">Product List</Link>
+                    <Link to={"/add"} className="nav-link">Add Product</Link>
+                    <Link to={"/product"} className="nav-link">Product List</Link>
                 </Nav>
             </Navbar>
         )
     }
 }
-
-export default NavigationBar

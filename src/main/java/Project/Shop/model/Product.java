@@ -29,6 +29,8 @@ public class Product {
 
     private BigDecimal price;
 
+    private String genre;
+
     @Override
     public String toString() {
         return "Product{" +

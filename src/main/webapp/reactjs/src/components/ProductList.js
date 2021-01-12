@@ -1,8 +1,9 @@
 import React from 'react';
 import {Card, Col, Container, Row} from "react-bootstrap";
 import {getProduct} from "../api/api";
+import {NavLink} from "react-router-dom";
 
-export default class ProductList extends React.Component{
+class ProductList extends React.Component{
 
     constructor(props) {
         super(props);
@@ -20,20 +21,24 @@ export default class ProductList extends React.Component{
     }
 
 
+
     render() {
         return (
             <Card className={"border border-dark bg-dark text-white"}>
-                <Card.Header align="center">Game Catalog</Card.Header>
+                <Card.Header align="center"><h2>Game Catalog</h2></Card.Header>
                 <Card.Body>
                     <Container>
                         <Row>
                             {this.state.games.length === 0 ?
                                 <Col align="center"> Games Available.</Col> :
                                 this.state.games.map((game) => (
-                                    <div style={{backgroundImage: "url(" + game.filename + ")"}} className="games" key={game.id}>
-                                        <p>{game.name}</p>
-                                        <p>{game.price}$</p>
-                                    </div>
+                                    <NavLink to={'/product/' + game.id} style={{backgroundImage: "url(" + game.filename + ")"}} className="games" key={game.id}>
+                                        <div className="inside">
+                                            <p className="name">{game.name}</p>
+                                            <p className="name">{game.price}$</p>
+                                            <p>{game.description}</p>
+                                        </div>
+                                    </NavLink>
                                 ))
                             }
                         </Row>
@@ -43,4 +48,6 @@ export default class ProductList extends React.Component{
         )
     }
 }
+
+export default ProductList;
 

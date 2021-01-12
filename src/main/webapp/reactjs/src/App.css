@@ -48,12 +48,46 @@
   text-align: center;
   box-shadow: 0 10px 6px -6px lawngreen;
   height: 300px;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.backgroundImage {
-  width: 256px;
+.name {
+  font-size: 35px;
+}
+
+.inside {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   height: 300px;
+  width: 256px;
+  opacity: 0;
 }
 
+.inside:hover{
+  opacity: 100%;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.singleGame {
+  width: 1080px;
+  margin: 5px;
+  text-align: center;
+  height: 200px;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.game {
+  width: 450px;
+  height: 600px;
+  display: block;
+  justify-content: center;
+  align-items: stretch;
+}
 
 
