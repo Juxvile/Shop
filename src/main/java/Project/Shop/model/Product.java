@@ -33,6 +33,12 @@ public class Product {
 
     private String trailer;
 
+    private String platform;
+
+    private String developer;
+
+    private String releaseDate;
+
     @Override
     public String toString() {
         return "Product{" +

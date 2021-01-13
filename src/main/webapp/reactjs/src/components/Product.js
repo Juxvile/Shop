@@ -16,7 +16,9 @@ export default class Product extends React.Component{
 
 
     initialState = {
-        name:'', description: '', count: '', price: '', filename: '', genre: '', trailer: ''
+        name:'', description: '', count: '', price: '', filename: '', genre: '',
+        trailer: '', platform: '', developer: '', releaseDate: ''
+
     }
 
     resetGame = () => {
@@ -33,7 +35,10 @@ export default class Product extends React.Component{
             price: this.state.price,
             filename: this.state.filename,
             genre: this.state.genre,
-            trailer: this.state.trailer
+            trailer: this.state.trailer,
+            platform: this.state.platform,
+            developer: this.state.developer,
+            releaseDate: this.state.releaseDate
         };
 
         axios.post("http://localhost:8085/product/add", game)
@@ -61,7 +66,7 @@ export default class Product extends React.Component{
 
     render() {
 
-        const {name,description,count,price,filename,genre,trailer} = this.state;
+        const {name,description,count,price,filename,genre,trailer, platform, releaseDate, developer} = this.state;
 
 
         return (
@@ -92,6 +97,7 @@ export default class Product extends React.Component{
                                                   placeholder="Enter Description" />
                                 </Form.Group>
                             </Form.Row>
+
                             <Form.Row>
                                 <Form.Group as={Col}>
                                     <Form.Label>Count</Form.Label>
@@ -110,6 +116,7 @@ export default class Product extends React.Component{
                                                   placeholder="Enter Price" />
                                 </Form.Group>
                             </Form.Row>
+
                             <Form.Row>
                             <Form.Group as={Col}>
                                 <Form.Label>FileURL</Form.Label>
@@ -128,14 +135,44 @@ export default class Product extends React.Component{
                                                   placeholder="Enter Genre" />
                             </Form.Group>
                             </Form.Row>
-                            <Form.Group as={Col}>
-                                <Form.Label>TrailerURL</Form.Label>
-                                <Form.Control required autoComplete="off"
-                                              type="text" name="trailer"
-                                              value={trailer}
-                                              onChange={this.gameChange}
-                                              placeholder="Enter Trailer URL" />
-                            </Form.Group>
+
+                            <Form.Row>
+                                <Form.Group as={Col}>
+                                    <Form.Label>TrailerURL</Form.Label>
+                                    <Form.Control required autoComplete="off"
+                                                  type="text" name="trailer"
+                                                  value={trailer}
+                                                  onChange={this.gameChange}
+                                                  placeholder="Enter Trailer URL" />
+                                </Form.Group>
+                                <Form.Group as={Col}>
+                                    <Form.Label>Platform</Form.Label>
+                                    <Form.Control required autoComplete="off"
+                                                  type="text" name="platform"
+                                                  value={platform}
+                                                  onChange={this.gameChange}
+                                                  placeholder="Enter Platform" />
+                                </Form.Group>
+                            </Form.Row>
+
+                            <Form.Row>
+                                <Form.Group as={Col}>
+                                    <Form.Label>Developer</Form.Label>
+                                    <Form.Control required autoComplete="off"
+                                                  type="text" name="developer"
+                                                  value={developer}
+                                                  onChange={this.gameChange}
+                                                  placeholder="Enter Developer" />
+                                </Form.Group>
+                                <Form.Group as={Col}>
+                                    <Form.Label>Release Date</Form.Label>
+                                    <Form.Control required autoComplete="off"
+                                                  type="text" name="releaseDate"
+                                                  value={releaseDate}
+                                                  onChange={this.gameChange}
+                                                  placeholder="Enter Release Date" />
+                                </Form.Group>
+                            </Form.Row>
                         </Card.Body>
                         <Card.Footer align="right">
                             <Button size="sm" variant="success" type="submit">
