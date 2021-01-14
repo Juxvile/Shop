@@ -124,11 +124,10 @@
   max-width: 500px;
   display: block;
   text-align: center;
+  margin-top: 15px;
   background: #2a2a2a;
-  margin: 15px;
   border-radius: 16px;
   border: 1px solid #f869f8;
-  width: 100%;
 }
 
 .description {
@@ -141,8 +140,41 @@
   border: 1px solid #f869f8;
 }
 
-.tab {
+.tabs{
+  margin-top: 20px;
   padding: 10px;
   color: white;
+  max-width: 680px;
+  max-height: 1000px;
+  background: #2a2a2a;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #f869f8;
 }
+
+.hello {
+  border: 1px solid #f869f8;
+  text-align: center;
+  box-shadow: 0 10px 40px 6px #f869f8;
+}
+
+.inTab {
+  margin-top: 25px;
+  border: 1px solid #f869f8;
+  text-align: center;
+  border-radius: 16px;
+  background: #2a2a2a;
+}
+
+.tab {
+  margin: 0 0 0 10px;
+  background: #2a2a2a;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #f869f8;
+  color: white;
+}
+
+
+
 

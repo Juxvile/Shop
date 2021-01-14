@@ -41,6 +41,14 @@ class SingleProductContainer extends React.Component{
                                         backgroundRepeat: 'no-repeat'
                                     }} className="gameImage">
                                     </Image>
+
+                                        <Col key={game.id} className="devAndGenre">
+                                            <p>Genre:&nbsp;&nbsp;{game.genre}</p>
+                                            <p>Platform:&nbsp;&nbsp;{game.platform}</p>
+                                            <p>Release date:&nbsp;&nbsp;{game.releaseDate}</p>
+                                            <p>Developer:&nbsp;&nbsp;{game.developer}</p>
+                                        </Col>
+
                                 </Col>
                                 <Col className="singleGame">
                                     <h1>{game.name}</h1>
@@ -48,24 +56,18 @@ class SingleProductContainer extends React.Component{
                                     <div className="description">{game.description}</div>
                                     <br/>
                                     <iframe title="trailer" className="trailerFrame" src={game.trailer}/>
-                                    <Tabs defaultActiveKey="about" id="uncontrolled-tab-example" className="tab">
-                                        <Tab eventKey="about" title="About" className="tab">
-
-                                        </Tab>
-                                        <Tab eventKey="system requirements" title="System Requirements" className="tab">
-
-                                        </Tab>
-                                    </Tabs>
+                                    <div>
+                                        <Tabs defaultActiveKey="about" id="uncontrolled-tab-example">
+                                                <Tab eventKey="about" title="About" tabClassName="tab">
+                                                    <p className="inTab">{game.description}</p>
+                                                </Tab>
+                                                <Tab eventKey="system requirements" title="System Requirements" tabClassName="tab">
+                                                    <p className="inTab">{game.description}</p>
+                                                </Tab>
+                                        </Tabs>
+                                    </div>
                                 </Col>
                             </Row>
-                        ))}
-                        {this.state.games.map((game) => (
-                            <Col key={game.id} className="devAndGenre">
-                                    <p>Genre:&nbsp;&nbsp;{game.genre}</p>
-                                    <p>Platform:&nbsp;&nbsp;{game.platform}</p>
-                                    <p>Release date:&nbsp;&nbsp;{game.releaseDate}</p>
-                                    <p>Developer:&nbsp;&nbsp;{game.developer}</p>
-                            </Col>
                         ))}
                     </Container>
                 </Card.Body>
