@@ -22,4 +22,8 @@ public class User {
 
     private String email;
 
+    private boolean active;
+
+    private String activationCode;
+
 }

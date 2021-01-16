@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import MyToast from "./MyToast";
 import axios from "axios";
 
-export default class Product extends React.Component{
+export default class Registration extends React.Component{
 
     constructor(props) {
         super(props);
@@ -126,22 +126,22 @@ export default class Product extends React.Component{
                             </Form.Row>
 
                             <Form.Row>
-                            <Form.Group as={Col}>
-                                <Form.Label>FileURL</Form.Label>
-                                <Form.Control autoComplete="off"
-                                              type="text" name="filename"
-                                              value={filename}
-                                              onChange={this.gameChange}
-                                              placeholder="Enter File URL" />
-                            </Form.Group>
-                            <Form.Group as={Col}>
+                                <Form.Group as={Col}>
+                                    <Form.Label>FileURL</Form.Label>
+                                    <Form.Control autoComplete="off"
+                                                  type="text" name="filename"
+                                                  value={filename}
+                                                  onChange={this.gameChange}
+                                                  placeholder="Enter File URL" />
+                                </Form.Group>
+                                <Form.Group as={Col}>
                                     <Form.Label>Genre</Form.Label>
                                     <Form.Control required autoComplete="off"
                                                   type="text" name="genre"
                                                   value={genre}
                                                   onChange={this.gameChange}
                                                   placeholder="Enter Genre" />
-                            </Form.Group>
+                                </Form.Group>
                             </Form.Row>
 
                             <Form.Row>

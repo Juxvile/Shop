@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import Carousel from "react-bootstrap/Carousel";
 
 
 class SingleProductContainer extends React.Component{
@@ -28,7 +29,7 @@ class SingleProductContainer extends React.Component{
     render() {
 
         return (
-            <Card className={"border border-dark bg-dark text-white"}>
+            <Card className={"border border-dark bg-dark text-white cards"}>
                 <Card.Body>
                     <Container>
                         {this.state.games.map((game) => (
@@ -42,11 +43,34 @@ class SingleProductContainer extends React.Component{
                                     }} className="gameImage">
                                     </Image>
 
-                                        <Col key={game.id} className="devAndGenre">
+                                        <Col className="devAndGenre">
                                             <p>Genre:&nbsp;&nbsp;{game.genre}</p>
                                             <p>Platform:&nbsp;&nbsp;{game.platform}</p>
                                             <p>Release date:&nbsp;&nbsp;{game.releaseDate}</p>
                                             <p>Developer:&nbsp;&nbsp;{game.developer}</p>
+                                        </Col>
+
+                                        <Col className="screenshots">
+                                            <Carousel>
+                                                <Carousel.Item interval={5000}>
+                                                    <Image
+                                                        className="screens"
+                                                        src={game.screenshot1}
+                                                    />
+                                                </Carousel.Item>
+                                                <Carousel.Item interval={5000}>
+                                                    <Image
+                                                        className="screens"
+                                                        src={game.screenshot2}
+                                                    />
+                                                </Carousel.Item>
+                                                <Carousel.Item interval={5000}>
+                                                    <Image
+                                                        className="screens"
+                                                        src={game.screenshot3}
+                                                    />
+                                                </Carousel.Item>
+                                            </Carousel>
                                         </Col>
 
                                 </Col>
@@ -59,10 +83,14 @@ class SingleProductContainer extends React.Component{
                                     <div>
                                         <Tabs defaultActiveKey="about" id="uncontrolled-tab-example">
                                                 <Tab eventKey="about" title="About" tabClassName="tab">
-                                                    <p className="inTab">{game.description}</p>
+                                                    <div className="inTab">
+                                                        {game.description2}
+                                                    </div>
                                                 </Tab>
                                                 <Tab eventKey="system requirements" title="System Requirements" tabClassName="tab">
-                                                    <p className="inTab">{game.description}</p>
+                                                    <div className="inTab">
+                                                        {game.sysReq}
+                                                    </div>
                                                 </Tab>
                                         </Tabs>
                                     </div>
