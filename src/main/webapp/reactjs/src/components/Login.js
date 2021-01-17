@@ -1,12 +1,11 @@
 import React from 'react';
 import {Card, Col, Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import MyToast from "./MyToast";
 import {getUsers} from "../api/api";
 import axios from "axios";
 import {Spring} from "react-spring/renderprops";
 
-export default class Registration extends React.Component{
+export default class Login extends React.Component{
 
     constructor(props) {
         super(props);
@@ -26,7 +25,7 @@ export default class Registration extends React.Component{
 
 
     initialState = {
-        username: '', password: '', email: ''
+        username: '', password: ''
 
     }
     userChange(event){
@@ -42,10 +41,9 @@ export default class Registration extends React.Component{
         const user = {
             username: this.state.username,
             password: this.state.password,
-            email: this.state.email,
         };
 
-        axios.post("http://localhost:8085/users/add", user)
+        axios.post("http://localhost:8085/login", user)
             .then(response => {
                 if(response.data !== null) {
                     this.setState({"show": true});
@@ -66,7 +64,7 @@ export default class Registration extends React.Component{
 
     render() {
 
-        const {username, password, email} = this.state;
+        const {username, password} = this.state;
 
 
         return (
@@ -75,11 +73,8 @@ export default class Registration extends React.Component{
                 to={{ opacity: 1, marginTop: 0 }}>
                 {props =>
                     <div style={props}>
-                        <div style={{"display": this.state.show ? "block" : "none"}}>
-                            <MyToast children={{show: this.state.show, message: "Game Saved Successfully."}}/>
-                        </div>
                         <Card className={"border border-dark bg-dark text-white cards"}>
-                            <Card.Header align="center"><h2>Registration</h2></Card.Header>
+                            <Card.Header align="center"><h2>Login</h2></Card.Header>
 
                             <Form onReset={this.resetUser} onSubmit={this.submitUser}>
                                 <Card.Body>
@@ -100,19 +95,11 @@ export default class Registration extends React.Component{
                                                           onChange={this.userChange}
                                                           placeholder="Enter Password"/>
                                         </Form.Group>
-                                        <Form.Group as={Col}>
-                                            <Form.Label>Email</Form.Label>
-                                            <Form.Control required autoComplete="off"
-                                                          type="email" name="email"
-                                                          value={email}
-                                                          onChange={this.userChange}
-                                                          placeholder="Enter Email"/>
-                                        </Form.Group>
                                     </Form.Row>
                                 </Card.Body>
                                 <Card.Footer align="right">
                                     <Button size="sm" variant="success" type="submit">
-                                        Registry
+                                        Login
                                     </Button>{' '}
                                     <Button size="sm" variant="info" type="reset">
                                         Reset

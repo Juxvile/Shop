@@ -3,6 +3,7 @@ import {Card, Col, Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import MyToast from "./MyToast";
 import axios from "axios";
+import {Spring} from "react-spring/renderprops";
 
 export default class Product extends React.Component{
 
@@ -78,7 +79,11 @@ export default class Product extends React.Component{
 
 
         return (
-            <div>
+            <Spring
+                from={{ opacity: 0, marginTop: -1000 }}
+                to={{ opacity: 1, marginTop: 0 }}>
+                {props =>
+            <div style={props}>
                 <div style={{"display": this.state.show ? "block" : "none"}}>
                     <MyToast children={{show:this.state.show, message:"Game Saved Successfully."}}/>
                 </div>
@@ -239,6 +244,8 @@ export default class Product extends React.Component{
                     </Form>
                 </Card>
             </div>
+                }
+            </Spring>
         )
     }
 }

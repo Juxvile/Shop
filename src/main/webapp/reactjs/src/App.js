@@ -8,6 +8,9 @@ import Product from "./components/Product";
 import ProductList from "./components/ProductList";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {SingleProduct} from './components/SingleProduct'
+import Registration from "./components/Registration";
+import Login from "./components/Login";
+
 
 
 const App = () => {
@@ -27,6 +30,8 @@ const App = () => {
                       <Route path="/add" exact component={Product}/>
                       <Route path="/product" exact component={ProductList}/>
                       <Route path="/product/:id" exact component={SingleProduct}/>
+                      <Route path="/registration" exact component={Registration}/>
+                      <Route path="/login" exact component={Login}/>
                   </Switch>
               </Col>
           </Row>
