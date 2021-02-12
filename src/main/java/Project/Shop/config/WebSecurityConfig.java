@@ -3,8 +3,6 @@ package Project.Shop.config;
 import Project.Shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
-@Profile("!https")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -29,14 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,
-                        "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")
-                .permitAll()
+                .antMatchers("/", "/login", "/users/*", "/product", "/product/*", "/users").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/index.html")
-                .defaultSuccessUrl("/")
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
                 .permitAll()
                 .and()
                 .logout()

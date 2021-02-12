@@ -43,7 +43,7 @@ export default class Login extends React.Component{
             password: this.state.password,
         };
 
-        axios.post("http://localhost:8085/login", user)
+        axios.post("http://localhost:8085/users", user)
             .then(response => {
                 if(response.data !== null) {
                     this.setState({"show": true});
