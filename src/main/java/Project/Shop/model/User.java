@@ -26,10 +26,6 @@ public class User implements UserDetails {
 
     private String email;
 
-    private boolean active;
-
-    private String activationCode;
-
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -57,7 +53,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return active;
+        return true;
     }
 
 }

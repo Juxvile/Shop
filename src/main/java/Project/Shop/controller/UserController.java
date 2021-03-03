@@ -40,14 +40,4 @@ public class UserController {
         userService.addUser(user);
     }
 
-
-//    @PostMapping("/login")// Не уверен что логин должен работать именно так, ну оно в принципе и не работает
-//    public String loginUser(
-//            @RequestParam String username,
-//            @RequestParam String password
-//    ) {
-//        return user;
-//    }
-
-
 }

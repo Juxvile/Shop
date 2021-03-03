@@ -20,7 +20,6 @@ public class UserService implements UserDetailsService {
 
     public final PasswordEncoder passwordEncoder;
     public final UserRepository userRepository;
-    public final MailSenderService mailSenderService;
 
 
     public List<User> getAllUsers(){
@@ -29,42 +28,10 @@ public class UserService implements UserDetailsService {
 
     public void addUser(User user) {
         user.setRoles(Collections.singleton(Role.USER));
-        user.setActive(false);
-        user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepository.save(user);
-        sendMessage(user);
 
-    }
-    private void sendMessage(User user){
-        if(!StringUtils.isEmpty(user.getEmail())){
-
-            String message = String.format(
-                    "Привет, %s! \n" +
-                            "Спасибо что выбрали Royal Blood. " +
-                            "Перейдите по ссылке чтобы активировать пользователя http://localhost:8085/activate/%s",
-                    user.getUsername(),
-                    user.getActivationCode()
-            );
-
-            mailSenderService.send(user.getEmail(), "Activation code", message);
-        }
-    }
-
-    public boolean activateUser(String code){
-        User userByCode = userRepository.findByActivationCode(code);
-
-        if (userByCode == null){
-            return false;
-        } else {
-
-            userByCode.setActivationCode(null);
-            userByCode.setActive(true);
-            userRepository.save(userByCode);
-
-            return true;
-        }
     }
 
     public void saveUser(User user, String username, Map<String, String> form){
@@ -82,7 +49,6 @@ public class UserService implements UserDetailsService {
                 user.getRoles().add(Role.valueOf(key));
             }
         }
-
         userRepository.save(user);
     }
 
@@ -92,7 +58,6 @@ public class UserService implements UserDetailsService {
         if (user == null){
             throw new UsernameNotFoundException("User not found");
         }
-
         return user;
     }
 }
