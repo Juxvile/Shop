@@ -76,7 +76,7 @@ export default class Registration extends React.Component{
                 {props =>
                     <div style={props}>
                         <div style={{"display": this.state.show ? "block" : "none"}}>
-                            <MyToast children={{show: this.state.show, message: "Game Saved Successfully."}}/>
+                            <MyToast children={{show: this.state.show, message: "Registration Completed."}}/>
                         </div>
                         <Card className={"border border-dark bg-dark text-white cards"}>
                             <Card.Header align="center"><h2>Registration</h2></Card.Header>

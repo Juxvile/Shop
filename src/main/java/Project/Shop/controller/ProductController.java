@@ -16,10 +16,9 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class ProductController {
+
     public final ProductRepository productRepository;
     public final ProductService productService;
-    @Value("${upload.path}")
-    private String uploadPath;
 
     @GetMapping
     public List<Product> products() {
