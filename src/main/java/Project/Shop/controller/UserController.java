@@ -1,12 +1,10 @@
 package Project.Shop.controller;
 
 import Project.Shop.config.NotFoundException;
-import Project.Shop.model.Product;
 import Project.Shop.model.User;
 import Project.Shop.repository.UserRepository;
 import Project.Shop.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -43,13 +41,13 @@ public class UserController {
     }
 
 
-    @PostMapping("/login")// Не уверен что логин должен работать именно так, ну оно в принципе и не работает
-    public String loginUser(
-            @RequestParam String username,
-            @RequestParam String password
-    ) {
-        return user;
-    }
+//    @PostMapping("/login")// Не уверен что логин должен работать именно так, ну оно в принципе и не работает
+//    public String loginUser(
+//            @RequestParam String username,
+//            @RequestParam String password
+//    ) {
+//        return user;
+//    }
 
 
 }
