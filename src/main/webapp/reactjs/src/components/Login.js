@@ -9,61 +9,42 @@ export default class Login extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = this.initialState;
-        this.state.show = false;
-        this.userChange = this.userChange.bind(this);
-        this.submitUser = this.submitUser.bind(this);
+
+        this.state = {
+            username: "admin",
+            password: "admin"
+        };
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-
-    componentDidMount() {
-        (async ()=>{
-            const data = await getUsers()
-            this.setState({users: data})
-        })();
-    }
-
-
-    initialState = {
-        username: '', password: ''
-
-    }
-    userChange(event){
-        this.setState({
-            [event.target.name]:event.target.value
-        })
-    }
-
-
-    submitUser(event) {
+    handleFormSubmit = event => {
         event.preventDefault();
 
-        const user = {
-            username: this.state.username,
-            password: this.state.password,
+        const endpoint = "http://localhost:8085/login"
+
+        const username = this.state.username;
+        const password = this.state.password;
+
+        const user_object = {
+            username: username,
+            password: password
         };
-
-        axios.post("http://localhost:8085/users", user)
-            .then(response => {
-                if(response.data !== null) {
-                    this.setState({"show": true});
-                    setTimeout(() => this.setState({"show": true}), 3000);
-                } else {
-                    this.setState({"show": false});
-                }
-            });
-
-        this.setState(this.initialState);
+        axios.post(endpoint, user_object).then(res => {
+            localStorage.setItem("authorization", res.data.token);
+            return this.handleDashboard();
+        });
     }
-    resetUser = () => {
-        this.setState(() => this.initialState);
+    handleDashboard() {
+        axios.get("http://localhost:8085/dashboard").then(res => {
+            if (res.data === "success") {
+                this.props.history.push("/dashboard");
+            } else {
+                alert("Authentication failure");
+            }
+        });
     }
-
-
-
 
     render() {
-
         const {username, password} = this.state;
 
 

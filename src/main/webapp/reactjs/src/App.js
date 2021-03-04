@@ -10,6 +10,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {SingleProduct} from './components/SingleProduct'
 import Registration from "./components/Registration";
 import Login from "./components/Login";
+import Interceptors from "./components/Interceptors";
+import Dashboard from "./components/DashBoard"
 
 
 
@@ -32,6 +34,7 @@ const App = () => {
                       <Route path="/product/:id" exact component={SingleProduct}/>
                       <Route path="/registration" exact component={Registration}/>
                       <Route path="/login" exact component={Login}/>
+                      <Route exact path="/dashboard" component={Dashboard}/>
                   </Switch>
               </Col>
           </Row>

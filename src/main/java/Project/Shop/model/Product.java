@@ -1,16 +1,16 @@
 package Project.Shop.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+
 import java.math.BigDecimal;
 
-@Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "Products")
@@ -18,7 +18,7 @@ public class Product {
 
     @Id
     @Field("_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private String id;
 
     private String name;
