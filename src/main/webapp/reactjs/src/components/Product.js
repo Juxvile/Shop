@@ -68,9 +68,6 @@ export default class Product extends React.Component{
         })
     }
 
-
-
-
     render() {
 
         const {name,description,count,price,filename,genre,
