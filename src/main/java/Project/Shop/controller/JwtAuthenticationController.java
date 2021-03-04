@@ -3,6 +3,7 @@ package Project.Shop.controller;
 import Project.Shop.config.JwtTokenUtil;
 import Project.Shop.model.JwtRequest;
 import Project.Shop.model.JwtResponse;
+import Project.Shop.model.JwtUserDetails;
 import Project.Shop.service.JwtUserDetailsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
