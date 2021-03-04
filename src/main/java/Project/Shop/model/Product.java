@@ -1,6 +1,9 @@
 package Project.Shop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -8,16 +11,15 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
-@Builder
-@Table(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "Products")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @EqualsAndHashCode.Include
-    private Long id;
+    @Field("_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
     private String name;
 

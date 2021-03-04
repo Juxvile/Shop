@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public List<Product> getOneProduct(@PathVariable long id) {
+    public List<Product> getOneProduct(@PathVariable String id) {
         return Collections.singletonList(products().stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst()

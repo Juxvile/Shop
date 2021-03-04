@@ -5,6 +5,7 @@ import Project.Shop.model.User;
 import Project.Shop.repository.UserRepository;
 import Project.Shop.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping(value = "/users")
 public class UserController {
     public final UserRepository userRepository;
+
     public final UserService userService;
 
     @GetMapping
@@ -24,15 +26,15 @@ public class UserController {
     }
 
 
-    @GetMapping("{id}") // не факт что нужно
-    public List<User> getOneUser(@PathVariable long id) {
+    @GetMapping("{id}")
+    public List<User> getOneUser(@PathVariable String id) {
         return Collections.singletonList(users().stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst()
                 .orElseThrow(NotFoundException::new));
     }
 
-    @PostMapping("/add") // Нужно пофиксить мейлсендер сервер, он не работает!!!
+    @PostMapping("/add")
     @ResponseBody
     public void addUser(
             @RequestBody User user
