@@ -1,9 +1,9 @@
-package Project.Shop.controller;
+package com.project.Shop.controller;
 
-import Project.Shop.config.JwtTokenUtil;
-import Project.Shop.model.JwtRequest;
-import Project.Shop.model.JwtResponse;
-import Project.Shop.service.JwtUserService;
+import com.project.Shop.config.JwtTokenUtil;
+import com.project.Shop.model.JwtRequest;
+import com.project.Shop.model.JwtResponse;
+import com.project.Shop.service.JwtUserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

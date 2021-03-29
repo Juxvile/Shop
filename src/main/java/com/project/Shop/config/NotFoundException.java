@@ -1,4 +1,5 @@
-package Project.Shop.config;
+package com.project.Shop.config;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

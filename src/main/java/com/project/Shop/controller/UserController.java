@@ -1,10 +1,9 @@
-package Project.Shop.controller;
+package com.project.Shop.controller;
 
-import Project.Shop.config.NotFoundException;
-
-import Project.Shop.model.User;
-import Project.Shop.repository.UserRepository;
-import Project.Shop.service.UserService;
+import com.project.Shop.config.NotFoundException;
+import com.project.Shop.model.User;
+import com.project.Shop.repository.UserRepository;
+import com.project.Shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,7 +47,6 @@ public class UserController {
     public void loginUser(@RequestBody User user) {
 
     }
-
     @RequestMapping("/dashboard")
     public String firstPage() {
         return "success";
