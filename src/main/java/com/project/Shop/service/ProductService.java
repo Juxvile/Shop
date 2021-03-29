@@ -1,7 +1,7 @@
-package Project.Shop.service;
+package com.project.Shop.service;
 
-import Project.Shop.model.Product;
-import Project.Shop.repository.ProductRepository;
+import com.project.Shop.model.Product;
+import com.project.Shop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

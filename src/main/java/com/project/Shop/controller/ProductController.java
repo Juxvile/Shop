@@ -1,9 +1,9 @@
-package Project.Shop.controller;
+package com.project.Shop.controller;
 
-import Project.Shop.config.NotFoundException;
-import Project.Shop.model.Product;
-import Project.Shop.repository.ProductRepository;
-import Project.Shop.service.ProductService;
+import com.project.Shop.config.NotFoundException;
+import com.project.Shop.model.Product;
+import com.project.Shop.repository.ProductRepository;
+import com.project.Shop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

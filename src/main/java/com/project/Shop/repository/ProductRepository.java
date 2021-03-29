@@ -1,6 +1,6 @@
-package Project.Shop.repository;
+package com.project.Shop.repository;
 
-import Project.Shop.model.Product;
+import com.project.Shop.model.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

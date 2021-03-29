@@ -1,4 +1,4 @@
-package Project.Shop.model;
+package com.project.Shop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

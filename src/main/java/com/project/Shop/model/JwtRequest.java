@@ -1,4 +1,4 @@
-package Project.Shop.model;
+package com.project.Shop.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

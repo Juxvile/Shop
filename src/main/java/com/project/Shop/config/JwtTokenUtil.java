@@ -1,4 +1,4 @@
-package Project.Shop.config;
+package com.project.Shop.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package Project.Shop.config;
+package com.project.Shop.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
