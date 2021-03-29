@@ -3,8 +3,7 @@ package Project.Shop.controller;
 import Project.Shop.config.JwtTokenUtil;
 import Project.Shop.model.JwtRequest;
 import Project.Shop.model.JwtResponse;
-import Project.Shop.model.JwtUserDetails;
-import Project.Shop.service.JwtUserDetailsService;
+import Project.Shop.service.JwtUserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,9 +19,9 @@ public class JwtAuthenticationController {
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    private final JwtUserDetailsService userDetailsService;
+    private final JwtUserService userDetailsService;
 
-    public JwtAuthenticationController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, JwtUserDetailsService userDetailsService) {
+    public JwtAuthenticationController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, JwtUserService userDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;

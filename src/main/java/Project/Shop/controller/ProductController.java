@@ -5,7 +5,6 @@ import Project.Shop.model.Product;
 import Project.Shop.repository.ProductRepository;
 import Project.Shop.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;

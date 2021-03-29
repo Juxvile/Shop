@@ -1,7 +1,7 @@
 package Project.Shop.config;
 
-import Project.Shop.service.JwtUserDetailsService;
 
+import Project.Shop.service.JwtUserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,11 +19,12 @@ import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-    private final JwtUserDetailsService jwtUserDetailsService;
+    private final JwtUserService jwtUserDetailsService;
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    public JwtRequestFilter(JwtUserDetailsService jwtUserDetailsService, JwtTokenUtil jwtTokenUtil) {
+    public JwtRequestFilter(JwtUserService jwtUserDetailsService,
+                            JwtTokenUtil jwtTokenUtil) {
         this.jwtUserDetailsService = jwtUserDetailsService;
         this.jwtTokenUtil = jwtTokenUtil;
     }
