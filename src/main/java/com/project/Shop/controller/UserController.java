@@ -19,6 +19,7 @@ public class UserController {
 
     public final UserService userService;
 
+
     @GetMapping
     public List<User> users (){
         return userService.getAllUsers();
@@ -45,6 +46,7 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public void loginUser(@RequestBody User user) {
+
 
     }
     @RequestMapping("/dashboard")
