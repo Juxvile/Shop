@@ -5,6 +5,10 @@
 	<packaging>pom</packaging>
 
 
+	<modules>
+		<module>frontend</module>
+	</modules>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -144,8 +148,10 @@
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
 				<version>1.8.0</version>
-
-
+				<configuration>
+					<workingDirectory>frontend</workingDirectory>
+					<installDirectory>target</installDirectory>
+				</configuration>
 
 				<executions>
 					<execution>
@@ -178,10 +184,6 @@
 					</execution>
 				</executions>
 
-				<configuration>
-					<workingDirectory>frontend</workingDirectory>
-					<installDirectory>target</installDirectory>
-				</configuration>
 			</plugin>
 
 
