@@ -11,8 +11,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>frontend</artifactId>
 
-
-
     <build>
         <pluginManagement>
             <plugins>
