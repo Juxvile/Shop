@@ -110,14 +110,9 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 
-<!--		Зависимость фронтенда-->
-<!--		<dependency>-->
-<!--			<groupId>Project</groupId>-->
-<!--			<artifactId>frontend</artifactId>-->
-<!--			<version>0.0.1-SNAPSHOT</version>-->
-<!--		</dependency>-->
 
 	</dependencies>
+
 
 	<!--		Зависимость фронтенда-->
 	<dependencyManagement>
