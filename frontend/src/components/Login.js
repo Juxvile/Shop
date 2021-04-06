@@ -19,7 +19,7 @@ export default class Login extends React.Component{
     handleFormSubmit = event => {
         event.preventDefault();
 
-        const endpoint = "http://localhost:8085/login"
+        const endpoint = "http://localhost:8080/users/login"
 
         const username = this.state.username;
         const password = this.state.password;

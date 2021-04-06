@@ -43,12 +43,7 @@ public class UserController {
         userService.addUser(user);
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    public void loginUser(@RequestBody User user) {
 
-
-    }
     @RequestMapping("/dashboard")
     public String firstPage() {
         return "success";
