@@ -1,14 +1,16 @@
 package com.project.Shop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -16,7 +18,7 @@ import java.util.Set;
 @Document(collection = "Users")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
+public class User {
     @Id
     @Field("_id")
     @JsonIgnore
@@ -28,31 +30,14 @@ public class User implements UserDetails {
 
     private String email;
 
-    private Set<Role> roles;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
+    private List<Role> roles;
 
 }

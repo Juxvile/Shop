@@ -1,12 +1,13 @@
 package com.project.Shop.service;
 
 import com.project.Shop.model.Role;
+import com.project.Shop.model.Status;
 import com.project.Shop.model.User;
+import com.project.Shop.repository.RoleRepository;
 import com.project.Shop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,39 +15,68 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
-    public final PasswordEncoder passwordEncoder;
-    public final UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+
+    public User register(User user) {
+        Role roleUser = roleRepository.findByName("ROLE_USER");
+        List<Role> userRoles = new ArrayList<>();
+        userRoles.add(roleUser);
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(userRoles);
+        user.setStatus(Status.ACTIVE);
+
+        User registeredUser = userRepository.save(user);
+        log.info("IN register - user: {} successfully registered", registeredUser);
+
+        return registeredUser;
+    }
+
+
+    public List<User> getAll() {
+        List<User> result = userRepository.findAll();
+        log.info("IN getAll - {} users found", result.size());
+        return result;
+    }
+
+
+    public User findByUsername(String username) {
+        User result = userRepository.findByUsername(username);
+        log.info("IN findByUsername - user: {} found by username: {}", result, username);
+        return result;
+    }
+
+
+    public User findById(Long id) {
+        User result = userRepository.findById(id).orElse(null);
+        if (result == null){
+            log.warn("IN findById - no user found by id {}",id);
+            return null;
+        }
+        log.info("IN findById - user: {} found by id: {}", result);
+        return result;
+    }
+
+
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+        log.info("IN delete - user with id: {} successfully deleted");
+    }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public void addUser(User user) {
-        user.setRoles(Collections.singleton(Role.USER));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        userRepository.save(user);
-
-    }
-
-    public void saveUser(User user, String username, Map<String, String> form) {
-
-        user.setUsername(username);
-
-        Set<String> roles = Arrays.stream(Role.values())
-                .map(Role::name)
-                .collect(Collectors.toSet());
-
-        user.getRoles().clear();
-
-        for (String key : form.keySet()) {
-            if (roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
-        userRepository.save(user);
-    }
 }

@@ -1,13 +1,20 @@
 package com.project.Shop.model;
 
-import org.springframework.security.core.GrantedAuthority;
+import lombok.Data;
+import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public enum Role implements GrantedAuthority {
-    ADMIN,
-    USER;
+import javax.persistence.*;
+import java.util.List;
 
-    @Override
-    public String getAuthority() {
-        return name();
-    }
+
+@Document(collection = "Roles")
+@Data
+public class Role {
+
+    private String name;
+
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    private List<User> users;
 }

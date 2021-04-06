@@ -29,10 +29,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-//    public JwtRequestFilter(JwtUserDetailsService jwtUserDetailsService, JwtTokenUtil jwtTokenUtil) {
-//        this.jwtUserDetailsService = jwtUserDetailsService;
-//        this.jwtTokenUtil = jwtTokenUtil;
-//    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
