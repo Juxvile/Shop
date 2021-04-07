@@ -1,7 +1,7 @@
 package com.project.Shop.model;
 
+
 import com.project.Shop.service.UserService;
-import com.project.Shop.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

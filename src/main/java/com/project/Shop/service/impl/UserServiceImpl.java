@@ -1,22 +1,21 @@
-package com.project.Shop.service;
+package com.project.Shop.service.impl;
 
 import com.project.Shop.model.Role;
 import com.project.Shop.model.Status;
 import com.project.Shop.model.User;
 import com.project.Shop.repository.RoleRepository;
 import com.project.Shop.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import com.project.Shop.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

@@ -1,27 +1,27 @@
 package com.project.Shop.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import java.util.List;
 
 
-@Document(collection = "Roles")
+@Entity
+@Table(name = "roles")
 @Data
 public class Role {
-    @Id
-    @Field("_id")
-    @JsonIgnore
-    private String id;
 
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
     private String name;
 
-    @DBRef
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
     private List<User> users;
+
 }

@@ -1,17 +1,14 @@
 package com.project.Shop.controller;
 
-import com.project.Shop.config.NotFoundException;
 import com.project.Shop.dto.UserDto;
 import com.project.Shop.model.User;
 import com.project.Shop.repository.UserRepository;
 import com.project.Shop.service.UserService;
-import com.project.Shop.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController

@@ -1,25 +1,19 @@
 package com.project.Shop.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import lombok.Data;
 
-
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Document(collection = "Products")
+@Entity
+@Table(name = "products")
 public class Product {
 
     @Id
-    @Field("_id")
-    @JsonIgnore
-    private String id;
+    @GeneratedValue
+    private Long id;
 
     private String name;
 

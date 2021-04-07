@@ -1,35 +1,38 @@
 package com.project.Shop.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import java.util.List;
 
 
+@Entity
+@Table(name = "users")
 @Data
-@Document(collection = "Users")
 public class User {
     @Id
-    @Field("_id")
-    @JsonIgnore
+    @GeneratedValue
+    @Column(name = "id")
     private String id;
 
+    @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "email")
     private String email;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @DBRef
+    @ManyToMany(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
     private List<Role> roles;
 
 }
