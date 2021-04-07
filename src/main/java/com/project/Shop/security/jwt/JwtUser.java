@@ -1,4 +1,4 @@
-package com.project.Shop.model;
+package com.project.Shop.security.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

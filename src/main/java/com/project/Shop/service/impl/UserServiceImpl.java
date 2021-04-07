@@ -7,11 +7,15 @@ import com.project.Shop.repository.RoleRepository;
 import com.project.Shop.repository.UserRepository;
 import com.project.Shop.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.context.annotation.ScopedProxyMode.INTERFACES;
+
 
 @Service
 @Slf4j

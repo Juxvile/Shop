@@ -1,5 +1,8 @@
-package com.project.Shop.model;
+package com.project.Shop.security.jwt;
 
+import com.project.Shop.model.Role;
+import com.project.Shop.model.Status;
+import com.project.Shop.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

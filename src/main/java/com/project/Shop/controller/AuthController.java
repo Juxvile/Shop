@@ -1,7 +1,7 @@
 package com.project.Shop.controller;
 
 import com.project.Shop.dto.AuthenticationRequestDto;
-import com.project.Shop.model.JwtTokenProvider;
+import com.project.Shop.security.jwt.JwtTokenProvider;
 import com.project.Shop.model.User;
 import com.project.Shop.service.UserService;
 import org.springframework.http.ResponseEntity;

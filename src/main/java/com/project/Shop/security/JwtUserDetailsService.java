@@ -1,6 +1,9 @@
-package com.project.Shop.model;
+package com.project.Shop.security;
 
 
+import com.project.Shop.security.jwt.JwtUser;
+import com.project.Shop.security.jwt.JwtUserFactory;
+import com.project.Shop.model.User;
 import com.project.Shop.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

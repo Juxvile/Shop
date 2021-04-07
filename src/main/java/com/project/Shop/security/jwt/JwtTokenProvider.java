@@ -1,6 +1,7 @@
-package com.project.Shop.model;
+package com.project.Shop.security.jwt;
 
 
+import com.project.Shop.model.Role;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,18 +23,14 @@ import java.util.List;
 @Component
 public class JwtTokenProvider {
 
-
     @Value("${jwt.token.secret}")
     private String secret;
 
     @Value("${jwt.token.expired}")
     private long validityInMilliSeconds;
 
-    private final UserDetailsService userDetailsService;
-
-    public JwtTokenProvider(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
