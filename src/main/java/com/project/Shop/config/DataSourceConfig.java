@@ -1,20 +1,40 @@
 package com.project.Shop.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
 //@Configuration
+//@PropertySource(ignoreResourceNotFound = true, value = "application.properties")
 //public class DataSourceConfig {
+//    @Value("${spring.datasource.driver-class-name}")
+//    private String driverClass;
+//    @Value("${spring.datasource.url}")
+//    private String url;
+//    @Value("${spring.datasource.username}")
+//    private String username;
+//    @Value("${spring.datasource.password}")
+//    private String password;
 //    @Bean
-//    public DataSource datasource() {
-//        return DataSourceBuilder.create()
-//                .driverClassName("com.mysql.cj.jdbc.Driver")
-//                .url("jdbc:mysql://localhost:3306/gamer")
-//                .username("root")
-//                .password("root")
-//                .build();
+//    public DataSource dataSource(){
+//        System.out.println(driverClass+" "+ url+" "+username+" "+password);
+//        DriverManagerDataSource source = new DriverManagerDataSource();
+//        source.setDriverClassName(driverClass);
+//        source.setUrl(url);
+//        source.setUsername(username);
+//        source.setPassword(password);
+//        return source;
+//    }
+//
+//    @Bean
+//    public NamedParameterJdbcTemplate namedParameterJdbcTemplate(){
+//        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(this.dataSource());
+//        return namedParameterJdbcTemplate;
 //    }
 //}

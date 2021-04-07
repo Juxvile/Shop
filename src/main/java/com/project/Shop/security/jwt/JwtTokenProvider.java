@@ -23,11 +23,11 @@ import java.util.List;
 @Component
 public class JwtTokenProvider {
 
-    @Value("${jwt.token.secret}")
-    private String secret;
+//    @Value("${jwt.token.secret}")
+    private String secret = "shop";
 
-    @Value("${jwt.token.expired}")
-    private long validityInMilliSeconds;
+//    @Value("${jwt.token.expired}")
+    private long validityInMilliSeconds = 3600000L;
 
     @Autowired
     private UserDetailsService userDetailsService;
