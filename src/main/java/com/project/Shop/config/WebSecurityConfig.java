@@ -92,9 +92,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // сессия не создается
             .and()
             .authorizeRequests()
-            .antMatchers(LOGIN_ENDPOINT).permitAll()
-//                .authorizeRequests().antMatchers("/*", "/").permitAll()
-            .anyRequest().authenticated()
+                .and()
+//            .antMatchers(LOGIN_ENDPOINT).permitAll()
+                .authorizeRequests().antMatchers("/*", "/").permitAll()
+//            .anyRequest().authenticated()
             .and()
             .apply(new JwtConfigurer(jwtTokenProvider));
     }

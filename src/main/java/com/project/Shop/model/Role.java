@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -21,7 +22,6 @@ public class Role {
 
     private String name;
 
-    @ToString.Exclude
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    @DBRef
     private List<User> users;
 }

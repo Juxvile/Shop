@@ -1,11 +1,14 @@
 package com.project.Shop.controller;
 
 import com.project.Shop.config.NotFoundException;
+import com.project.Shop.dto.UserDto;
 import com.project.Shop.model.User;
 import com.project.Shop.repository.UserRepository;
 import com.project.Shop.service.UserService;
 import com.project.Shop.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -27,17 +30,19 @@ public class UserController {
     }
 
 
-    @GetMapping("{id}")
-    public List<User> getOneUser(@PathVariable String id) {
-        return Collections.singletonList(users().stream()
-                .filter(product -> product.getId().equals(id))
-                .findFirst()
-                .orElseThrow(NotFoundException::new));
+    @GetMapping(value = "{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Long id){
+        User user = userService.findById(id);
+
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        UserDto result = UserDto.fromUser(user);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 
     @PostMapping("/add")
-    @ResponseBody
     public void addUser(
             @RequestBody User user
     ) {
