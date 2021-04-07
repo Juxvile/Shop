@@ -4,6 +4,7 @@ import com.project.Shop.config.NotFoundException;
 import com.project.Shop.model.User;
 import com.project.Shop.repository.UserRepository;
 import com.project.Shop.service.UserService;
+import com.project.Shop.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class UserController {
 
     @GetMapping
     public List<User> users (){
-        return userService.getAllUsers();
+        return userService.getAll();
     }
 
 

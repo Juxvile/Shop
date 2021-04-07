@@ -1,82 +1,17 @@
 package com.project.Shop.service;
 
-import com.project.Shop.model.Role;
-import com.project.Shop.model.Status;
 import com.project.Shop.model.User;
-import com.project.Shop.repository.RoleRepository;
-import com.project.Shop.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
-@Service
-@Slf4j
-public class UserService {
+public interface UserService {
+    User register (User user);
 
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    List<User> getAll();
 
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    User findByUsername(String username);
 
+    User findById (Long id);
 
-    public User register(User user) {
-        Role roleUser = roleRepository.findByName("ROLE_USER");
-        List<Role> userRoles = new ArrayList<>();
-        userRoles.add(roleUser);
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(userRoles);
-        user.setStatus(Status.ACTIVE);
-
-        User registeredUser = userRepository.save(user);
-        log.info("IN register - user: {} successfully registered", registeredUser);
-
-        return registeredUser;
-    }
-
-
-    public List<User> getAll() {
-        List<User> result = userRepository.findAll();
-        log.info("IN getAll - {} users found", result.size());
-        return result;
-    }
-
-
-    public User findByUsername(String username) {
-        User result = userRepository.findByUsername(username);
-        log.info("IN findByUsername - user: {} found by username: {}", result, username);
-        return result;
-    }
-
-
-    public User findById(Long id) {
-        User result = userRepository.findById(id).orElse(null);
-        if (result == null){
-            log.warn("IN findById - no user found by id {}",id);
-            return null;
-        }
-        log.info("IN findById - user: {} found by id: {}", result);
-        return result;
-    }
-
-
-    public void delete(Long id) {
-        userRepository.deleteById(id);
-        log.info("IN delete - user with id: {} successfully deleted");
-    }
-
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
+    void delete (Long id);
 }

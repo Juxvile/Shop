@@ -16,8 +16,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -59,11 +59,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*")
-                .allowedMethods("HEAD", "GET", "PUT", "POST",
-                        "DELETE", "PATCH").allowedHeaders("*");
-    }
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**").allowedOrigins("*")
+//                .allowedMethods("HEAD", "GET", "PUT", "POST",
+//                        "DELETE", "PATCH").allowedHeaders("*");
+//    }
 
 //    @Override
 //    protected void configure(HttpSecurity httpSecurity) throws Exception {
