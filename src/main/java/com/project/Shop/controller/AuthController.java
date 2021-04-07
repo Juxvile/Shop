@@ -3,33 +3,31 @@ package com.project.Shop.controller;
 import com.project.Shop.dto.AuthenticationRequestDto;
 import com.project.Shop.model.JwtTokenProvider;
 import com.project.Shop.model.User;
-import com.project.Shop.repository.UserRepository;
-import com.project.Shop.service.UserServiceImpl;
+import com.project.Shop.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@RestController
+@CrossOrigin(origins = "http://localhost:3000/")
 public class AuthController {
 
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
-    private final UserServiceImpl userServiceImpl;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserServiceImpl userServiceImpl, UserRepository userRepository) {
+    public AuthController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
-        this.userServiceImpl = userServiceImpl;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
 
@@ -38,7 +36,7 @@ public class AuthController {
         try{
             String username = requestDto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,requestDto.getPassword()));
-            User user = userRepository.findByUsername(username);
+            User user = userService.findByUsername(username);
 
             if(user == null){
                 throw new UsernameNotFoundException("User with username " + username + " not found");

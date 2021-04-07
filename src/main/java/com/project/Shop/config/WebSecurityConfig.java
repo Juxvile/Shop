@@ -13,12 +13,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @Configuration
 //@EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -92,6 +93,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers(LOGIN_ENDPOINT).permitAll()
+//                .authorizeRequests().antMatchers("/*", "/").permitAll()
             .anyRequest().authenticated()
             .and()
             .apply(new JwtConfigurer(jwtTokenProvider));
