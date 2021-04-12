@@ -12,7 +12,6 @@
 /build
 /.idea
 /node
-/scripts
 /config
 /target
 .gitignore
