@@ -27,12 +27,13 @@
     <build>
         <plugins>
 
+
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.8.0</version>
                 <configuration>
-                    <workingDirectory>C:\PF\Project Java\ShopApp\frontend</workingDirectory>
+                    <workingDirectory>C:\PF\Project Java\Shop\frontend</workingDirectory>
                     <installDirectory>target</installDirectory>
                 </configuration>
 
