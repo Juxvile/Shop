@@ -5,6 +5,9 @@
     <file type="web" url="file://$PROJECT_DIR$/backend" />
     <file type="web" url="file://$PROJECT_DIR$/frontend" />
   </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="JSX" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

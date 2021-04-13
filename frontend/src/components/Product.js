@@ -48,7 +48,7 @@ export default class Product extends React.Component{
             screenshot3: this.state.screenshot3
         };
 
-        axios.post("http://localhost:8085/product/add", game)
+        axios.post("http://localhost:8075/product/add", game)
             .then(response => {
                 if(response.data !== null) {
                     this.setState({"show": true});

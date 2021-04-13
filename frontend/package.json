@@ -88,12 +88,6 @@
     "test": "node scripts/test.js",
     "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js"
   },
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:8075",
-      "ws": true
-    }
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
