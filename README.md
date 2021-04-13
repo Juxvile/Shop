@@ -6,7 +6,7 @@
 заносит их в корзину после чего оплачивает и ему на почту приходит ключ активации игры в Steam.
 
 Technologies:
-- Java 8
+- Java 11
 - Maven
 - Spring boot
 - PostgreSQL
