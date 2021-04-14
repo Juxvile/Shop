@@ -19,7 +19,7 @@ export default class Login extends React.Component{
     handleFormSubmit = event => {
         event.preventDefault();
 
-        const endpoint = "http://localhost:8080/users/login"
+        const endpoint = "http://localhost:8075/users/login"
 
         const username = this.state.username;
         const password = this.state.password;
@@ -34,7 +34,7 @@ export default class Login extends React.Component{
         });
     }
     handleDashboard() {
-        axios.get("http://localhost:8085/dashboard").then(res => {
+        axios.get("http://localhost:8075/dashboard").then(res => {
             if (res.data === "success") {
                 this.props.history.push("/dashboard");
             } else {

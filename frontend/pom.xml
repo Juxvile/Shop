@@ -50,7 +50,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.8.0</version>
                 <configuration>
-                    <workingDirectory>C:\PF\Project Java\Shop\frontend</workingDirectory>
+                    <workingDirectory>${basedir}</workingDirectory>
                     <installDirectory>target</installDirectory>
                 </configuration>
 

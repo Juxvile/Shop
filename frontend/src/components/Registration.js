@@ -45,7 +45,7 @@ export default class Registration extends React.Component{
             email: this.state.email,
         };
 
-        axios.post("http://localhost:8085/users/add", user)
+        axios.post("http://localhost:8075/users/add", user)
             .then(response => {
                 if(response.data !== null) {
                     this.setState({"show": true});

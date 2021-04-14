@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
     entry: "./src/App.js", // входная точка - исходный файл
@@ -11,6 +11,8 @@ module.exports = {
         historyApiFallback: true,
         port: 8075,
         open: true
+        // inline: false,
+        // contentBase: "./dist",
     },
     module:{
         rules:[   //загрузчик для jsx
