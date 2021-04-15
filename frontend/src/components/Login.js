@@ -2,8 +2,6 @@ import React from 'react';
 import {Card, Col, Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import {Spring} from "react-spring/renderprops";
-
 export default class Login extends React.Component{
 
     constructor(props) {
@@ -48,11 +46,7 @@ export default class Login extends React.Component{
 
 
         return (
-            <Spring
-                from={{ opacity: 0, marginTop: -1000 }}
-                to={{ opacity: 1, marginTop: 0 }}>
-                {props =>
-                    <div style={props}>
+                    <Card>
                         <Card className={"border border-dark bg-dark text-white cards"}>
                             <Card.Header align="center"><h2>Login</h2></Card.Header>
 
@@ -87,9 +81,7 @@ export default class Login extends React.Component{
                                 </Card.Footer>
                             </Form>
                         </Card>
-                    </div>
-                }
-            </Spring>
+                    </Card>
         )
     }
 }

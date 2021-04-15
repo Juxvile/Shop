@@ -1,4 +1,3 @@
-
 var axios = require("axios");
 
 export const jwtToken = localStorage.getItem("authorization");

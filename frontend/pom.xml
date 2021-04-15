@@ -32,7 +32,7 @@
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <outputDirectory>${basedir}/target/classes/public</outputDirectory>
+                            <outputDirectory>${basedir}/target/resources</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/build</directory>
@@ -86,8 +86,6 @@
                 </executions>
 
             </plugin>
-
-
         </plugins>
     </build>
 
