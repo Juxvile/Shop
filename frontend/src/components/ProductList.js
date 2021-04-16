@@ -5,11 +5,9 @@ import {NavLink} from "react-router-dom";
 
 class ProductList extends React.Component{
 
-
     state = {
         games: [],
     };
-
 
 
     componentDidMount() {

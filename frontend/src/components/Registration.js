@@ -15,7 +15,6 @@ export default class Registration extends React.Component{
         this.submitUser = this.submitUser.bind(this);
     }
 
-
     componentDidMount() {
         (async ()=>{
             const data = await getUsers()
@@ -59,8 +58,6 @@ export default class Registration extends React.Component{
     resetUser = () => {
         this.setState(() => this.initialState);
     }
-
-
 
 
     render() {
@@ -119,3 +116,4 @@ export default class Registration extends React.Component{
         )
     }
 }
+

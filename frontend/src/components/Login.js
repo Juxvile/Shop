@@ -2,34 +2,28 @@ import React from 'react';
 import {Card, Col, Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+
+
 export default class Login extends React.Component{
 
-    constructor(props) {
-        super(props);
+    state = {
+        username: '',
+        password: ''
+    };
 
-        this.state = {
-            username: "",
-            password: ""
-        };
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    }
-
-    handleFormSubmit = event => {
+    async handleFormSubmit(event) {
         event.preventDefault();
 
         const endpoint = "http://localhost:8075/users/login"
 
-        const username = this.state.username;
-        const password = this.state.password;
+        const user_object = {...this.state};
 
-        const user_object = {
-            username: username,
-            password: password
-        };
-        axios.post(endpoint, user_object).then(res => {
-            localStorage.setItem("authorization", res.data.token);
-            return this.handleDashboard();
-        });
+        const res = await axios.post(endpoint, user_object);
+
+       localStorage.setItem("authorization", res.data.token);
+
+       return this.handleDashboard();
+
     }
     handleDashboard() {
         axios.get("http://localhost:8075/dashboard").then(res => {

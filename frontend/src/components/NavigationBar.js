@@ -2,9 +2,8 @@ import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-export default class NavigationBar extends React.Component{
-    render() {
-        return (
+const NavigationBar = () => (
+
             <Navbar bg="dark" variant="dark">
                 <Link to={""} className="navbar-brand">
                     Gamer's Shop
@@ -19,6 +18,6 @@ export default class NavigationBar extends React.Component{
                     <Link to={"/registration"} className="nav-link">Registration</Link>
                 </Nav>
             </Navbar>
-        )
-    }
-}
+);
+
+export default NavigationBar;
