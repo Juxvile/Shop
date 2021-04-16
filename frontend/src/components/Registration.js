@@ -24,7 +24,7 @@ export default class Registration extends React.Component{
             this.setState({users: data})
         })();
     }
-    
+
     userChange = event => {
         this.setState({
             [event.target.name]:event.target.value
