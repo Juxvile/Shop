@@ -5,12 +5,11 @@ import {NavLink} from "react-router-dom";
 
 class ProductList extends React.Component{
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            games: []
-        };
-    }
+
+    state = {
+        games: [],
+    };
+
 
 
     componentDidMount() {
