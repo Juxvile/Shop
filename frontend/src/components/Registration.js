@@ -7,13 +7,16 @@ import axios from "axios";
 
 export default class Registration extends React.Component{
 
-    constructor(props) {
-        super(props);
-        this.state = this.initialState;
-        this.state.show = false;
-        this.userChange = this.userChange.bind(this);
-        this.submitUser = this.submitUser.bind(this);
+    initialState = {
+        username: '',
+        password: '',
+        email: ''
     }
+
+    state = {
+        ... this.initialState,
+        show: false,
+    };
 
     componentDidMount() {
         (async ()=>{
@@ -21,27 +24,19 @@ export default class Registration extends React.Component{
             this.setState({users: data})
         })();
     }
-
-
-    initialState = {
-        username: '', password: '', email: ''
-
-    }
-    userChange(event){
+    
+    userChange = event => {
         this.setState({
             [event.target.name]:event.target.value
-        })
-    }
+        });
+    };
 
-
-    submitUser(event) {
+    submitUser = event => {
         event.preventDefault();
 
-        const user = {
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email,
-        };
+        const { username, password, email } = this.state;
+
+        const user = {username, password, email};
 
         axios.post("http://localhost:8075/users/add", user)
             .then(response => {
@@ -59,16 +54,14 @@ export default class Registration extends React.Component{
         this.setState(() => this.initialState);
     }
 
-
     render() {
 
-        const {username, password, email} = this.state;
-
+        const {username, password, email, show} = this.state;
 
         return (
                     <Card>
-                        <div style={{"display": this.state.show ? "block" : "none"}}>
-                            <MyToast children={{show: this.state.show, message: "Registration Completed."}}/>
+                        <div style={{"display": show ? "block" : "none"}}>
+                            <MyToast children={{show, message: "Registration Completed."}}/>
                         </div>
                         <Card className={"border border-dark bg-dark text-white cards"}>
                             <Card.Header align="center"><h2>Registration</h2></Card.Header>
