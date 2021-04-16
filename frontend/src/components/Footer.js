@@ -3,10 +3,7 @@ import {Navbar, Col, Container} from "react-bootstrap";
 
 const FULL_YEAR = new Date().getFullYear();
 
-export default class Footer extends Component{
-    render() {
-
-        return (
+const Footer = () => (
             <Navbar fixed="bottom" bg="dark" variant="dark">
                 <Container>
                     <Col lg={12} className="text-center text-muted">
@@ -15,5 +12,6 @@ export default class Footer extends Component{
                 </Container>
             </Navbar>
         );
-    }
-}
+
+export default Footer;
+
