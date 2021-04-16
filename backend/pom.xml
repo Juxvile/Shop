@@ -77,26 +77,6 @@
                 <version>2.4.3</version>
             </plugin>
 
-
-            <!-- Плагин который забирает ресурсы с фронта себе в билд-->
-<!--            <plugin>-->
-<!--                <artifactId>maven-antrun-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>generate-resources</phase>-->
-<!--                        <configuration>-->
-<!--                            <target>-->
-<!--                                <copy todir="${project.build.directory}/classes/public">-->
-<!--                                    <fileset dir="../frontend/build"/>-->
-<!--                                </copy>-->
-<!--                            </target>-->
-<!--                        </configuration>-->
-<!--                        <goals>-->
-<!--                            <goal>run</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
         </plugins>
     </build>
 

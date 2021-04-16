@@ -18,8 +18,7 @@
         <java.version>11</java.version>
         <frontend-src-dir>frontend</frontend-src-dir>
         <node.version>v14.16.0</node.version>
-        <yarn.version>v1.16.0</yarn.version>
-        <frontend-maven-plugin.version>1.8.0</frontend-maven-plugin.version>
+        <frontend-maven-plugin.version>1.9.1</frontend-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>

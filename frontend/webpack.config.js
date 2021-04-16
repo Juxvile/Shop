@@ -4,15 +4,13 @@ module.exports = {
     entry: "./src/App.js", // входная точка - исходный файл
     output:{
         path: path.resolve(__dirname, './target/resources'),     // путь к каталогу выходных файлов - папка public
-        publicPath: '/target/resources',
+        publicPath: '/public/',
         filename: "bundle.js"       // название создаваемого файла
     },
     devServer: {
-        historyApiFallback: true,
-        port: 8075,
-        open: true
-        // inline: false,
-        // contentBase: "./dist",
+        contentBase: __dirname + "/public/",
+        inline: true,
+        port: 8075
     },
     module:{
         rules:[   //загрузчик для jsx
@@ -26,6 +24,7 @@ module.exports = {
                 }},
             {
                 test: /\.css$/,
+                exclude: /node_modules/,
                 use: [ 'style-loader', 'css-loader' ]
             }
         ]
