@@ -28,7 +28,7 @@
                 <version>1.8.0</version>
                 <configuration>
                     <workingDirectory>${basedir}</workingDirectory>
-                    <installDirectory>target</installDirectory>
+                    <installDirectory>${basedir}</installDirectory>
                 </configuration>
 
                 <executions>
