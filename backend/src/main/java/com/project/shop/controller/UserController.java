@@ -5,6 +5,7 @@ import com.project.shop.dto.UserDto;
 import com.project.shop.model.User;
 import com.project.shop.repository.UserRepository;
 import com.project.shop.service.UserService;
+import com.project.shop.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,14 @@ import java.util.List;
 @RequestMapping(value = "/users")
 public class UserController {
     public final UserRepository userRepository;
-
     public final UserService userService;
+    public final UserServiceImpl userServiceImpl;
 
     @Autowired
-    public UserController(UserRepository userRepository, UserService userService) {
+    public UserController(UserRepository userRepository, UserService userService, UserServiceImpl userServiceImpl) {
         this.userRepository = userRepository;
         this.userService = userService;
+        this.userServiceImpl = userServiceImpl;
     }
 
 
@@ -49,7 +51,7 @@ public class UserController {
     public void addUser(
             @RequestBody User user
     ) {
-        userService.register(user);
+        userServiceImpl.register(user);
     }
 
 
