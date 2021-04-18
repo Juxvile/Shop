@@ -28,12 +28,10 @@ public class UserController {
         this.userServiceImpl = userServiceImpl;
     }
 
-
     @GetMapping
     public List<User> users (){
         return userServiceImpl.getAll();
     }
-
 
     @GetMapping(value = "{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Long id){
@@ -46,14 +44,12 @@ public class UserController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-
     @PostMapping("/add")
     public void addUser(
             @RequestBody User user
     ) {
         userServiceImpl.register(user);
     }
-
 
     @RequestMapping("/dashboard")
     public String firstPage() {

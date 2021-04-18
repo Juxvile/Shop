@@ -97,11 +97,11 @@ class SingleProductContainer extends React.Component{
                                             </div>
                                         </Col>
                                     </Row>
-                                ))}
+                                    ))
+                                }
                             </Container>
                         </Card.Body>
                     </Card>
-
         )
     }
 }

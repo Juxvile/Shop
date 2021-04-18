@@ -14,7 +14,7 @@ export default class Login extends React.Component{
     async handleFormSubmit(event) {
         event.preventDefault();
 
-        const endpoint = "http://localhost:8075/users/login"
+        const endpoint = "http://localhost:8075/login"
 
         const user_object = {...this.state};
 

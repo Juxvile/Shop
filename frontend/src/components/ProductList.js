@@ -18,7 +18,6 @@ class ProductList extends React.Component{
     }
 
 
-
     render() {
         return (
             <Card className={"border border-dark bg-dark text-white cards"}>
