@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping
     public List<User> users (){
-        return userService.getAll();
+        return userServiceImpl.getAll();
     }
 
 

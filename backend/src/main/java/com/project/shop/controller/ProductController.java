@@ -2,11 +2,16 @@ package com.project.shop.controller;
 
 
 import com.project.shop.config.NotFoundException;
+import com.project.shop.dto.ProductDto;
+import com.project.shop.dto.UserDto;
 import com.project.shop.model.Product;
+import com.project.shop.model.User;
 import com.project.shop.repository.ProductRepository;
 import com.project.shop.service.ProductService;
 import com.project.shop.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -34,12 +39,15 @@ public class ProductController {
         return productService.getAll();
     }
 
-    @GetMapping("{id}")
-    public List<Product> getOneProduct(@PathVariable String id) {
-        return Collections.singletonList(products().stream()
-                .filter(product -> product.getId().equals(id))
-                .findFirst()
-                .orElseThrow(NotFoundException::new));
+    @GetMapping(value = "{id}")
+    public ResponseEntity<ProductDto> getUserById(@PathVariable(name = "id") Long id){
+        Product product = productServiceImpl.findById(id);
+
+        if (product == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        ProductDto result = ProductDto.fromProduct(product);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/add")

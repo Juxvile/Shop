@@ -44,25 +44,4 @@ public class Product {
 
     private String screenshot3;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", count=" + count +
-                ", filename='" + filename + '\'' +
-                ", price=" + price +
-                ", genre='" + genre + '\'' +
-                ", trailer='" + trailer + '\'' +
-                ", platform='" + platform + '\'' +
-                ", developer='" + developer + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", description2='" + description2 + '\'' +
-                ", sysReq='" + sysReq + '\'' +
-                ", screenshot1='" + screenshot1 + '\'' +
-                ", screenshot2='" + screenshot2 + '\'' +
-                ", screenshot3='" + screenshot3 + '\'' +
-                '}';
-    }
 }
