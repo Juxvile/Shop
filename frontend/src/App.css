@@ -42,7 +42,7 @@
 }
 
 body{
-  background-image: url("wp.jpg");
+  background-image: url("pics/wp.jpg");
 }
 
 .games {
@@ -156,11 +156,38 @@ body{
   border: 1px solid #f869f8;
 }
 
-.hello {
+
+/*Welcome (home) page*/
+.helloJumbotron {
   border: 1px solid #f869f8;
+  background-image: url("pics/games.jpeg");
   text-align: center;
+  color: white;
+  line-height: 74px;
+  font-family: "Lost Island";
   box-shadow: 0 5px 10px 5px #f869f8;
 }
+
+.mainText {
+  font-size: 100px;
+  -webkit-text-stroke-width: 5px;
+  -webkit-text-stroke-color: black;
+}
+.middleText{
+  font-size: 50px;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: black;
+}
+.smallText{
+  font-size: 30px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
+
+
+
+
+
 
 .inTab {
   margin-top: 25px;
