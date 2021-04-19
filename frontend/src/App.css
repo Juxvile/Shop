@@ -41,6 +41,10 @@
   box-shadow: 0 10px 6px -6px #f869f8;
 }
 
+body{
+  background-image: url("wp.jpg");
+}
+
 .games {
   width: 256px;
   border: 1px solid black;
@@ -155,7 +159,7 @@
 .hello {
   border: 1px solid #f869f8;
   text-align: center;
-  box-shadow: 0 10px 40px 6px #f869f8;
+  box-shadow: 0 5px 10px 5px #f869f8;
 }
 
 .inTab {
