@@ -1,5 +1,5 @@
-import React,{Component} from 'react';
-import {Navbar, Col, Container} from "react-bootstrap";
+import React from 'react';
+import {Col, Container, Navbar} from "react-bootstrap";
 
 const FULL_YEAR = new Date().getFullYear();
 

@@ -162,8 +162,8 @@ body{
   border: 1px solid #f869f8;
   background-image: url("pics/games.jpeg");
   text-align: center;
-  color: white;
-  line-height: 74px;
+  color: azure;
+  line-height: 57px;
   font-family: "Lost Island";
   box-shadow: 0 5px 10px 5px #f869f8;
 }
@@ -205,11 +205,6 @@ body{
   text-align: center;
   border: 1px solid #f869f8;
   color: white;
-}
-
-.card {
-  border-radius: 16px;
-  margin-bottom: 50px;
 }
 
 .screenshots {

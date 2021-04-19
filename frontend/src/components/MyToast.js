@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Toast} from "react-bootstrap";
 
 const toastCss = {
