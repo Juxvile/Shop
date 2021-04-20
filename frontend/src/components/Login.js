@@ -4,12 +4,15 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 
-export default class Login extends React.Component{
+class Login extends React.Component{
 
-    state = {
-        username: '',
-        password: ''
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: ""
+        };
+    }
 
     async handleFormSubmit(event) {
         event.preventDefault();
@@ -79,3 +82,5 @@ export default class Login extends React.Component{
         )
     }
 }
+
+export default Login;
