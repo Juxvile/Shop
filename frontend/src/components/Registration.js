@@ -5,7 +5,7 @@ import MyToast from "./MyToast";
 import {getUsers} from "../api/api";
 import axios from "axios";
 
-export default class Registration extends React.Component{
+class Registration extends React.Component{
 
     initialState = {
         username: '',
@@ -34,9 +34,12 @@ export default class Registration extends React.Component{
     submitUser = event => {
         event.preventDefault();
 
-        const { username, password, email } = this.state;
+        const user = {
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email
+        };
 
-        const user = {username, password, email};
 
         axios.post("http://localhost:8075/users/add", user)
             .then(response => {
@@ -109,4 +112,6 @@ export default class Registration extends React.Component{
         )
     }
 }
+
+export default Registration
 

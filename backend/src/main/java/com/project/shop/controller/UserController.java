@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
 @RequestMapping(value = "/users")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class UserController {
     public final UserRepository userRepository;
     public final UserService userService;
