@@ -1,11 +1,8 @@
 package com.project.shop.controller;
 
 
-import com.project.shop.config.NotFoundException;
 import com.project.shop.dto.ProductDto;
-import com.project.shop.dto.UserDto;
 import com.project.shop.model.Product;
-import com.project.shop.model.User;
 import com.project.shop.repository.ProductRepository;
 import com.project.shop.service.ProductService;
 import com.project.shop.service.impl.ProductServiceImpl;
@@ -14,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 

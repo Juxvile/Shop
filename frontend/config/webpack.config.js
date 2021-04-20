@@ -31,7 +31,7 @@ const postcssNormalize = require('postcss-normalize');
 const appPackageJson = require(paths.appPackageJson);
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP == 'false'; //sourcemap off
 
 const webpackDevClientEntry = require.resolve(
   'react-dev-utils/webpackHotDevClient'
@@ -268,22 +268,22 @@ module.exports = function (webpackEnv) {
               ascii_only: true,
             },
           },
-          sourceMap: shouldUseSourceMap,
+          // sourceMap: shouldUseSourceMap,
         }),
         // This is only used in production mode
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
             parser: safePostCssParser,
-            map: shouldUseSourceMap
-              ? {
-                  // `inline: false` forces the sourcemap to be output into a
-                  // separate file
-                  inline: false,
-                  // `annotation: true` appends the sourceMappingURL to the end of
-                  // the css file, helping the browser find the sourcemap
-                  annotation: true,
-                }
-              : false,
+            // map: shouldUseSourceMap
+            //   ? {
+            //       // `inline: false` forces the sourcemap to be output into a
+            //       // separate file
+            //       inline: false,
+            //       // `annotation: true` appends the sourceMappingURL to the end of
+            //       // the css file, helping the browser find the sourcemap
+            //       annotation: true,
+            //     }
+            //   : false,
           },
           cssProcessorPluginOptions: {
             preset: ['default', { minifyFontValues: { removeQuotes: false } }],

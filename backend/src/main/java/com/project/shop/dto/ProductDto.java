@@ -2,7 +2,6 @@ package com.project.shop.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.shop.model.Product;
-import com.project.shop.model.User;
 import lombok.Data;
 
 import java.math.BigDecimal;
