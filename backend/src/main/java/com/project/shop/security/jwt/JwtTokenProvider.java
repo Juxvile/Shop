@@ -1,8 +1,8 @@
 package com.project.shop.security.jwt;
 
 
-
 import com.project.shop.model.Role;
+import com.project.shop.model.User;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class JwtTokenProvider {
@@ -88,11 +90,6 @@ public class JwtTokenProvider {
     }
 
     private List <String> getRoleNames (List<Role> userRoles){
-        List<String> result = new ArrayList<>();
-
-        userRoles.forEach(role -> {
-            result.add(role.getName());
-        });
-        return result;
+        return userRoles.stream().map(Role::getName).collect(Collectors.toList());
     }
 }

@@ -34,14 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         protected void configure (HttpSecurity http) throws Exception{
         http
             .httpBasic().disable()
-                .headers().frameOptions().disable()
+                .headers().frameOptions().disable() // нужно только при использовании h2
         .and()
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // сессия не создается
             .and()
             .authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/h2-console/**").permitAll()
                 .and()
 //            .antMatchers(LOGIN_ENDPOINT).permitAll()
                 .authorizeRequests().antMatchers("/*", "/").permitAll()
