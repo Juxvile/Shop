@@ -17,8 +17,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    private static final String LOGIN_ENDPOINT = "/login";
-
     @Autowired
     public WebSecurityConfig(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
@@ -34,16 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         protected void configure (HttpSecurity http) throws Exception{
         http
             .httpBasic().disable()
-                .headers().frameOptions().disable() // нужно только при использовании h2
-        .and()
+            .headers().frameOptions().disable() // нужно только при использовании h2
+            .and()
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // сессия не создается
             .and()
-            .authorizeRequests()
-                .and()
-//            .antMatchers(LOGIN_ENDPOINT).permitAll()
-                .authorizeRequests().antMatchers("/*", "/").permitAll()
-//            .anyRequest().authenticated()
+            .authorizeRequests().antMatchers("/*", "/").permitAll()
             .and()
             .apply(new JwtConfigurer(jwtTokenProvider));
     }

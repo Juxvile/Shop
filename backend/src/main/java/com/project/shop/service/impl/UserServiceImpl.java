@@ -1,9 +1,6 @@
 package com.project.shop.service.impl;
 
 
-import antlr.StringUtils;
-import antlr.Token;
-import com.project.shop.controller.dto.AuthenticationRequestDto;
 import com.project.shop.controller.dto.TokenResponseDto;
 import com.project.shop.model.Role;
 import com.project.shop.model.Status;
@@ -26,13 +23,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class UserServiceImpl implements UserService {
-
-
+    
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final BCryptPasswordEncoder passwordEncoder;
-
+    
+    // TODO: 27.04.2021 Переписать под Optional 
     @Override
     public User register(User user) {
         Role roleUser = roleRepository.findByName("ROLE_USER");

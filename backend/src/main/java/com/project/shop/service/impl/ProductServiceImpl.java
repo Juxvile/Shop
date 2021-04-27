@@ -3,6 +3,7 @@ package com.project.shop.service.impl;
 import com.project.shop.model.Product;
 import com.project.shop.repository.ProductRepository;
 import com.project.shop.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +11,12 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
+
     public final ProductRepository productRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
+    // TODO: 27.04.2021 Проверки (!= null, name != null)
     @Override
     public void add(Product product) {
         productRepository.save(product);
