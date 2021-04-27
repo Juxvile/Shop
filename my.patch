@@ -1,0 +1,277 @@
+diff --git a/ShopApp.iml b/ShopApp.iml
+index 78b2cc5..4fd5057 100644
+--- a/ShopApp.iml
++++ b/ShopApp.iml
+@@ -1,2 +1,12 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<module type="JAVA_MODULE" version="4" />
+\ No newline at end of file
++<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
++    <output url="file://$MODULE_DIR$/target/classes" />
++    <output-test url="file://$MODULE_DIR$/target/test-classes" />
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/target" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+diff --git a/backend/src/main/java/com/project/shop/controller/AuthController.java b/backend/src/main/java/com/project/shop/controller/AuthController.java
+index 8c1d29e..3948551 100644
+--- a/backend/src/main/java/com/project/shop/controller/AuthController.java
++++ b/backend/src/main/java/com/project/shop/controller/AuthController.java
+@@ -2,17 +2,12 @@ package com.project.shop.controller;
+ 
+ 
+ import com.project.shop.controller.dto.AuthenticationRequestDto;
+-import com.project.shop.model.User;
+-import com.project.shop.security.jwt.JwtTokenProvider;
++import com.project.shop.controller.dto.TokenResponseDto;
+ import com.project.shop.service.UserService;
+ import lombok.RequiredArgsConstructor;
+ import org.springframework.http.HttpStatus;
+ import org.springframework.http.ResponseEntity;
+-import org.springframework.security.authentication.AuthenticationManager;
+-import org.springframework.security.authentication.BadCredentialsException;
+-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+ import org.springframework.security.core.AuthenticationException;
+-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+ import org.springframework.web.bind.annotation.PostMapping;
+ import org.springframework.web.bind.annotation.RequestBody;
+ import org.springframework.web.bind.annotation.RestController;
+@@ -26,11 +21,12 @@ public class AuthController {
+     @PostMapping("login")
+     public ResponseEntity<?> login(@RequestBody AuthenticationRequestDto requestDto) {
+         try {
+-
+-
+-            return ResponseEntity.status(HttpStatus.OK).body();
++            TokenResponseDto result = userService.login(requestDto.getUsername(), requestDto.getPassword());
++            return ResponseEntity.status(HttpStatus.OK).body(result);
+         } catch (AuthenticationException e) {
+-            throw new BadCredentialsException("Invalid username or password");
++            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
++        } catch (Exception e) {
++            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+         }
+     }
+ }
+diff --git a/backend/src/main/java/com/project/shop/controller/dto/TokenResponseDto.java b/backend/src/main/java/com/project/shop/controller/dto/TokenResponseDto.java
+index e69de29..65f357c 100644
+--- a/backend/src/main/java/com/project/shop/controller/dto/TokenResponseDto.java
++++ b/backend/src/main/java/com/project/shop/controller/dto/TokenResponseDto.java
+@@ -0,0 +1,12 @@
++package com.project.shop.controller.dto;
++
++import lombok.Builder;
++import lombok.Value;
++
++@Builder
++@Value(staticConstructor = "of")
++public class TokenResponseDto {
++    String username;
++    String token;
++
++}
+diff --git a/backend/src/main/java/com/project/shop/repository/UserRepository.java b/backend/src/main/java/com/project/shop/repository/UserRepository.java
+index 4426823..11df3cf 100644
+--- a/backend/src/main/java/com/project/shop/repository/UserRepository.java
++++ b/backend/src/main/java/com/project/shop/repository/UserRepository.java
+@@ -4,8 +4,10 @@ package com.project.shop.repository;
+ import com.project.shop.model.User;
+ import org.springframework.data.jpa.repository.JpaRepository;
+ 
++import java.util.Optional;
++
+ 
+ public interface UserRepository extends JpaRepository<User, Long> {
+-    User findByUsername(String username);
++    Optional<User> findByUsername(String username);
+ 
+ }
+diff --git a/backend/src/main/java/com/project/shop/security/jwt/JwtTokenProvider.java b/backend/src/main/java/com/project/shop/security/jwt/JwtTokenProvider.java
+index bc86d52..0e3bc65 100644
+--- a/backend/src/main/java/com/project/shop/security/jwt/JwtTokenProvider.java
++++ b/backend/src/main/java/com/project/shop/security/jwt/JwtTokenProvider.java
+@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
+ import java.util.Base64;
+ import java.util.Date;
+ import java.util.List;
++import java.util.Optional;
+ import java.util.stream.Collectors;
+ 
+ @Component
+@@ -33,60 +34,60 @@ public class JwtTokenProvider {
+     private UserDetailsService userDetailsService;
+ 
+     @Bean
+-    public BCryptPasswordEncoder passwordEncoder(){
++    public BCryptPasswordEncoder passwordEncoder() {
+         return new BCryptPasswordEncoder();
+     }
+ 
+     @PostConstruct
+-    protected void init(){
++    protected void init() {
+         secret = Base64.getEncoder().encodeToString(secret.getBytes());
+     }
+ 
+-    public String createToken(String username, List<Role> roles){
++    public Optional<String> createToken(String username, List<Role> roles) {
+         Claims claims = Jwts.claims().setSubject(username);
+         claims.put("roles", getRoleNames(roles));
+ 
+         Date now = new Date();
+         Date validity = new Date(now.getTime() + validityInMilliSeconds);
+ 
+-        return Jwts.builder()
++        return Optional.of(Jwts.builder()
+                 .setClaims(claims)
+                 .setIssuedAt(now)
+                 .setExpiration(validity)
+                 .signWith(SignatureAlgorithm.HS256, secret)
+-                .compact();
++                .compact());
+     }
+ 
+-    public Authentication getAuthentication(String token){
++    public Authentication getAuthentication(String token) {
+         UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));
+         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+     }
+ 
+-    public String getUsername(String token){
++    public String getUsername(String token) {
+         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+     }
+ 
+-    public String resolveToken (HttpServletRequest req){
++    public String resolveToken(HttpServletRequest req) {
+         String bearerToken = req.getHeader("Authorization");
+-        if (bearerToken != null && bearerToken.startsWith("Bearer ")){
+-            return bearerToken.substring(7,bearerToken.length());
++        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
++            return bearerToken.substring(7, bearerToken.length());
+         }
+         return null;
+     }
+ 
+-    public boolean validateToken (String token){
++    public boolean validateToken(String token) {
+         try {
+             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+-            if (claims.getBody().getExpiration().before(new Date())){
++            if (claims.getBody().getExpiration().before(new Date())) {
+                 return false;
+             }
+             return true;
+-        } catch (JwtException | IllegalArgumentException e){
++        } catch (JwtException | IllegalArgumentException e) {
+             throw new JwtAuthenticationException("JWT token is expired or invalid");
+         }
+     }
+ 
+-    private List <String> getRoleNames (List<Role> userRoles){
++    private List<String> getRoleNames(List<Role> userRoles) {
+         return userRoles.stream().map(Role::getName).collect(Collectors.toList());
+     }
+ }
+diff --git a/backend/src/main/java/com/project/shop/service/UserService.java b/backend/src/main/java/com/project/shop/service/UserService.java
+index 075b7c8..375df68 100644
+--- a/backend/src/main/java/com/project/shop/service/UserService.java
++++ b/backend/src/main/java/com/project/shop/service/UserService.java
+@@ -1,6 +1,6 @@
+ package com.project.shop.service;
+ 
+-import com.project.shop.controller.dto.AuthenticationRequestDto;
++import com.project.shop.controller.dto.TokenResponseDto;
+ import com.project.shop.model.User;
+ 
+ import java.util.List;
+@@ -8,7 +8,7 @@ import java.util.List;
+ public interface UserService {
+     User register(User user);
+ 
+-    AuthenticationRequestDto login(String username, String password);
++    TokenResponseDto login(String username, String password) throws Exception;
+ 
+     List<User> getAll();
+ 
+diff --git a/backend/src/main/java/com/project/shop/service/impl/UserServiceImpl.java b/backend/src/main/java/com/project/shop/service/impl/UserServiceImpl.java
+index 6e84569..eeaaabc 100644
+--- a/backend/src/main/java/com/project/shop/service/impl/UserServiceImpl.java
++++ b/backend/src/main/java/com/project/shop/service/impl/UserServiceImpl.java
+@@ -1,7 +1,10 @@
+ package com.project.shop.service.impl;
+ 
+ 
++import antlr.StringUtils;
++import antlr.Token;
+ import com.project.shop.controller.dto.AuthenticationRequestDto;
++import com.project.shop.controller.dto.TokenResponseDto;
+ import com.project.shop.model.Role;
+ import com.project.shop.model.Status;
+ import com.project.shop.model.User;
+@@ -47,14 +50,16 @@ public class UserServiceImpl implements UserService {
+     }
+ 
+     @Override
+-    public AuthenticationRequestDto login(String username, String password) {
++    public TokenResponseDto login(String username, String password) throws Exception {
+         User user = this.findByUsername(username);
+ 
+-        if (user == null) throw new UsernameNotFoundException("User with username " + username + " not found");
++        String token = jwtTokenProvider.createToken(username, user.getRoles())
++                .orElseThrow(() -> new Exception("Token didn't created"));
+ 
+-        String token = jwtTokenProvider.createToken(username, user.getRoles());
+-
+-        return AuthenticationRequestDto.of(username, password)
++        return TokenResponseDto.builder()
++                .username(username)
++                .token(token)
++                .build();
+     }
+ 
+     @Override
+@@ -66,20 +71,18 @@ public class UserServiceImpl implements UserService {
+ 
+     @Override
+     public User findByUsername(String username) {
+-        User result = userRepository.findByUsername(username);
+-        log.info("IN findByUsername - user: {} found by username: {}", result, username);
+-        return result;
++        return userRepository.findByUsername(username)
++                .orElseThrow(() -> generateException(
++                        String.format("IN findByUsername - user: {} found by username: {}", username),
++                        String.format("User with username = {} not found", username)));
+     }
+ 
+     @Override
+     public User findById(Long id) {
+-        User result = userRepository.findById(id).orElse(null);
+-        if (result == null) {
+-            log.warn("IN findById - no user found by id {}", id);
+-            return null;
+-        }
+-        log.info("IN findById - user: {} found by id: {}", result);
+-        return result;
++        return userRepository.findById(id)
++                .orElseThrow(() -> generateException(
++                        String.format("IN findById - no user found by id {}", id),
++                        String.format("User with id {} not found", id)));
+     }
+ 
+     @Override
+@@ -87,4 +90,9 @@ public class UserServiceImpl implements UserService {
+         userRepository.deleteById(id);
+         log.info("IN delete - user with id: {} successfully deleted");
+     }
++
++    private UsernameNotFoundException generateException(String loggerMessage, String exceptionMessage) {
++        log.warn(loggerMessage);
++        return new UsernameNotFoundException(exceptionMessage);
++    }
+ }

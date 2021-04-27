@@ -1,7 +1,10 @@
 package com.project.shop.service.impl;
 
 
+import antlr.StringUtils;
+import antlr.Token;
 import com.project.shop.controller.dto.AuthenticationRequestDto;
+import com.project.shop.controller.dto.TokenResponseDto;
 import com.project.shop.model.Role;
 import com.project.shop.model.Status;
 import com.project.shop.model.User;
@@ -47,14 +50,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public AuthenticationRequestDto login(String username, String password) {
+    public TokenResponseDto login(String username, String password) throws Exception {
         User user = this.findByUsername(username);
 
-        if (user == null) throw new UsernameNotFoundException("User with username " + username + " not found");
+        String token = jwtTokenProvider.createToken(username, user.getRoles())
+                .orElseThrow(() -> new Exception("Token didn't created"));
 
-        String token = jwtTokenProvider.createToken(username, user.getRoles());
-
-        return AuthenticationRequestDto.of(username, password)
+        return TokenResponseDto.builder()
+                .username(username)
+                .token(token)
+                .build();
     }
 
     @Override
@@ -66,25 +71,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        User result = userRepository.findByUsername(username);
-        log.info("IN findByUsername - user: {} found by username: {}", result, username);
-        return result;
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> generateException(
+                        String.format("IN findByUsername - user: {} found by username: {}", username),
+                        String.format("User with username = {} not found", username)));
     }
 
     @Override
     public User findById(Long id) {
-        User result = userRepository.findById(id).orElse(null);
-        if (result == null) {
-            log.warn("IN findById - no user found by id {}", id);
-            return null;
-        }
-        log.info("IN findById - user: {} found by id: {}", result);
-        return result;
+        return userRepository.findById(id)
+                .orElseThrow(() -> generateException(
+                        String.format("IN findById - no user found by id {}", id),
+                        String.format("User with id {} not found", id)));
     }
 
     @Override
     public void delete(Long id) {
         userRepository.deleteById(id);
         log.info("IN delete - user with id: {} successfully deleted");
+    }
+
+    private UsernameNotFoundException generateException(String loggerMessage, String exceptionMessage) {
+        log.warn(loggerMessage);
+        return new UsernameNotFoundException(exceptionMessage);
     }
 }

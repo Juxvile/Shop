@@ -1,6 +1,6 @@
 package com.project.shop.service;
 
-import com.project.shop.controller.dto.AuthenticationRequestDto;
+import com.project.shop.controller.dto.TokenResponseDto;
 import com.project.shop.model.User;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
     User register(User user);
 
-    AuthenticationRequestDto login(String username, String password);
+    TokenResponseDto login(String username, String password) throws Exception;
 
     List<User> getAll();
 
