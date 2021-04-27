@@ -1,7 +1,7 @@
 package com.project.shop.controller;
 
 
-import com.project.shop.dto.UserDto;
+import com.project.shop.controller.dto.UserDto;
 import com.project.shop.model.User;
 import com.project.shop.repository.UserRepository;
 import com.project.shop.service.UserService;
@@ -54,6 +54,11 @@ public class UserController {
     @RequestMapping("/dashboard")
     public String firstPage() {
         return "success";
+    }
+
+    @PostMapping("/delete")
+    public void deleteUser (Long id){
+        userServiceImpl.delete(id);
     }
 
 

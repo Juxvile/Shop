@@ -1,4 +1,4 @@
-package com.project.shop.dto;
+package com.project.shop.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.shop.model.Product;

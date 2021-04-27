@@ -3,8 +3,25 @@ import {Card, Col, Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
+const API_URL = "http://localhost:8075/login";
 
 class Login extends React.Component{
+
+
+    login(username,password){
+        return axios
+            .post(API_URL, {username,password})
+            .then ((response) => {
+                if (response.data.accessToken){
+                    localStorage.setItem("user", JSON.stringify(response.data));
+                }
+                return response.data;
+            });
+    }
+
+    logout(){
+        localStorage.removeItem("user");
+    }
 
     constructor(props) {
         super(props);
@@ -39,15 +56,13 @@ class Login extends React.Component{
     }
 
     render() {
-        const {username, password} = this.state;
-
 
         return (
                     <Card>
                         <Card className={"border border-dark bg-dark text-white cards"}>
                             <Card.Header align="center"><h2>Login</h2></Card.Header>
 
-                            <Form onReset={this.resetUser} onSubmit={this.submitUser}>
+                            <Form onReset={this.resetUser} onSubmit={this.handleFormSubmit()}>
                                 <Card.Body>
                                     <Form.Row>
                                         <Form.Group as={Col}>
@@ -55,7 +70,6 @@ class Login extends React.Component{
                                             <Form.Control required autoComplete="off"
                                                           type="text" name="username"
                                                           value={username}
-                                                          onChange={this.userChange}
                                                           placeholder="Enter Username"/>
                                         </Form.Group>
                                         <Form.Group as={Col}>
@@ -63,7 +77,6 @@ class Login extends React.Component{
                                             <Form.Control required autoComplete="off"
                                                           type="password" name="password"
                                                           value={password}
-                                                          onChange={this.userChange}
                                                           placeholder="Enter Password"/>
                                         </Form.Group>
                                     </Form.Row>

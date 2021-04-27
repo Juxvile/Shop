@@ -1,7 +1,7 @@
 package com.project.shop.controller;
 
 
-import com.project.shop.dto.ProductDto;
+import com.project.shop.controller.dto.ProductDto;
 import com.project.shop.model.Product;
 import com.project.shop.repository.ProductRepository;
 import com.project.shop.service.ProductService;
@@ -50,6 +50,11 @@ public class ProductController {
     @ResponseBody
     public void newProduct(@RequestBody Product product) {
         productServiceImpl.add(product);
+    }
+
+    @PostMapping("/delete")
+    public void deleteProduct (Long id){
+        productServiceImpl.delete(id);
     }
 
 }
