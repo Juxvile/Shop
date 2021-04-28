@@ -1,10 +1,10 @@
 package com.project.shop.controller.dto;
 
-import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
-@Builder
-@Value(staticConstructor = "of")
+@RequiredArgsConstructor(staticName = "of")
+@Value
 public class TokenResponseDto {
     String username;
     String token;

@@ -53,10 +53,7 @@ public class UserServiceImpl implements UserService {
         String token = jwtTokenProvider.createToken(username, user.getRoles())
                 .orElseThrow(() -> new Exception("Token didn't created"));
 
-        return TokenResponseDto.builder()
-                .username(username)
-                .token(token)
-                .build();
+        return TokenResponseDto.of(username,token);
     }
 
     @Override

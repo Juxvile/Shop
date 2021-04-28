@@ -47,7 +47,6 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    @ResponseBody
     public void newProduct(@RequestBody Product product) {
         productServiceImpl.add(product);
     }

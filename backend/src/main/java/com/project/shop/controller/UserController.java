@@ -45,9 +45,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public void addUser(
-            @RequestBody User user
-    ) {
+    public void addUser(@RequestBody User user) {
         userServiceImpl.register(user);
     }
 
