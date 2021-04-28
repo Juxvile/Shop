@@ -1,6 +1,7 @@
 package com.project.shop.service.impl;
 
 import com.project.shop.config.NoRequiredFieldException;
+import com.project.shop.config.NotFoundException;
 import com.project.shop.model.Product;
 import com.project.shop.repository.ProductRepository;
 import com.project.shop.service.ProductService;
@@ -19,11 +20,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void add(Product product) {
-        if (product.getName() != null && product.getPrice() != null){
-            productRepository.save(product);
-        } else {
-            throw new NoRequiredFieldException();
-        }
+        if (product.getName() == null && product.getPrice() == null) throw new NoRequiredFieldException();
+        productRepository.save(product);
     }
 
     @Override
@@ -33,18 +31,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) {
-        Product result = productRepository.findById(id).orElse(null);
-        if (result == null){
-            log.warn("IN findById - no product found by id {}",id);
-            return null;
-        }
-            log.info("IN findById - product: {} found by id: {}", result);
-            return result;
+        return productRepository.findById(id).orElseThrow(() -> generateException(
+                String.format("IN findById - no product found by id {}",id),
+                String.format("IN findById - product: {} found by id: {}", id)));
     }
 
     @Override
     public void delete(Long id) {
         productRepository.deleteById(id);
         log.info("IN delete - product with id: {} successfully deleted");
+    }
+
+    private NotFoundException generateException(String loggerMessage, String exceptionMessage) {
+        log.warn(loggerMessage);
+        return new NotFoundException(exceptionMessage);
     }
 }
