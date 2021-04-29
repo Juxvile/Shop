@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from 'src/auth/authHeader.js';
 
-const API_URL = 'http://localhost:8075/users/test/';
+const API_URL = 'http://localhost:8075/users';
 
 class UserService {
     getPublicContent() {

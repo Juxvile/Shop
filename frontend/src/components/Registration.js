@@ -41,7 +41,7 @@ class Registration extends React.Component{
         };
 
 
-        axios.post("http://localhost:8075/users/add", user)
+        axios.post("http://localhost:8075/registration", user)
             .then(response => {
                 if(response.data !== null) {
                     this.setState({"show": true});

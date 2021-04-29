@@ -44,11 +44,6 @@ public class UserController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public void addUser(@RequestBody User user) {
-        userServiceImpl.register(user);
-    }
-
     @RequestMapping("/dashboard")
     public String firstPage() {
         return "success";
