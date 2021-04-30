@@ -6,7 +6,7 @@ import Welcome from "./components/Welcome";
 import Footer from "./components/Footer";
 import Product from "./components/Product";
 import ProductList from "./components/ProductList";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router,Route, Switch} from 'react-router-dom';
 import {SingleProduct} from './components/SingleProduct'
 import Registration from "./components/Registration";
 import Login from "./components/Login";

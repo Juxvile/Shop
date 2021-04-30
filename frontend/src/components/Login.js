@@ -47,7 +47,7 @@ class Login extends React.Component {
                                                   type="text" name="username"
                                                   value={username}
                                                   onChange={(e) => this.setState({username: e.target.value})}
-                                                  placeholder="Enter Username"/>
+                                                  placeholder="Enter Username*"/>
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Password</Form.Label>
@@ -55,7 +55,7 @@ class Login extends React.Component {
                                                   type="password" name="password"
                                                   value={password}
                                                   onChange={(e) => this.setState({password: e.target.value})}
-                                                  placeholder="Enter Password"/>
+                                                  placeholder="Enter Password*"/>
                                 </Form.Group>
                             </Form.Row>
                         </Card.Body>
