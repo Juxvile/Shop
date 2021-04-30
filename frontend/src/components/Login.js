@@ -42,20 +42,20 @@ class Login extends React.Component {
                         <Card.Body>
                             <Form.Row>
                                 <Form.Group as={Col}>
-                                    <Form.Label>Username</Form.Label>
+                                    <Form.Label>Username *</Form.Label>
                                     <Form.Control required autoComplete="off"
                                                   type="text" name="username"
                                                   value={username}
                                                   onChange={(e) => this.setState({username: e.target.value})}
-                                                  placeholder="Enter Username*"/>
+                                                  placeholder="Enter Username"/>
                                 </Form.Group>
                                 <Form.Group as={Col}>
-                                    <Form.Label>Password</Form.Label>
+                                    <Form.Label>Password *</Form.Label>
                                     <Form.Control required autoComplete="off"
                                                   type="password" name="password"
                                                   value={password}
                                                   onChange={(e) => this.setState({password: e.target.value})}
-                                                  placeholder="Enter Password*"/>
+                                                  placeholder="Enter Password"/>
                                 </Form.Group>
                             </Form.Row>
                         </Card.Body>

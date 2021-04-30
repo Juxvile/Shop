@@ -63,28 +63,28 @@ class Registration extends React.Component{
                         <Card.Body>
                             <Form.Row>
                                 <Form.Group as={Col}>
-                                    <Form.Label>Username</Form.Label>
+                                    <Form.Label>Username *</Form.Label>
                                     <Form.Control required autoComplete="off"
                                                   type="text" name="username"
                                                   value={username}
                                                   onChange={this.userChange}
-                                                  placeholder="Enter Username*"/>
+                                                  placeholder="Enter Username"/>
                                 </Form.Group>
                                 <Form.Group as={Col}>
-                                    <Form.Label>Password</Form.Label>
+                                    <Form.Label>Password *</Form.Label>
                                     <Form.Control required autoComplete="off"
                                                   type="password" name="password"
                                                   value={password}
                                                   onChange={this.userChange}
-                                                  placeholder="Enter Password*"/>
+                                                  placeholder="Enter Password"/>
                                 </Form.Group>
                                 <Form.Group as={Col}>
-                                    <Form.Label>Email</Form.Label>
+                                    <Form.Label>Email *</Form.Label>
                                     <Form.Control required autoComplete="off"
                                                   type="email" name="email"
                                                   value={email}
                                                   onChange={this.userChange}
-                                                  placeholder="Enter Email*"/>
+                                                  placeholder="Enter Email"/>
                                 </Form.Group>
                             </Form.Row>
                         </Card.Body>
