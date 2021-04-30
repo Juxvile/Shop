@@ -31,7 +31,7 @@ class Registration extends React.Component{
             .then(response => {
                 if(response.data !== null) {
                     this.setState({"show": true});
-                    setTimeout(() => this.setState({"show": true}), 3000);
+                    setTimeout(() => this.setState({"show": false}), 3000);
                 } else {
                     this.setState({"show": false});
                 }
@@ -42,11 +42,6 @@ class Registration extends React.Component{
             password: '',
             email: '',
         })
-        setTimeout(()=> {
-            return this.setState({
-                show: false
-            })
-        }, 3000)
     }
     resetUser = () => {
         this.setState(() => this.state);
