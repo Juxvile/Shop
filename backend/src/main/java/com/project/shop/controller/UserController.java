@@ -15,8 +15,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
-@CrossOrigin(origins = "http://localhost:3000/")
 public class UserController {
+
     public final UserRepository userRepository;
     public final UserService userService;
     public final UserServiceImpl userServiceImpl;
@@ -42,11 +42,6 @@ public class UserController {
         }
         UserDto result = UserDto.fromUser(user);
         return new ResponseEntity<>(result, HttpStatus.OK);
-    }
-
-    @RequestMapping("/dashboard")
-    public String firstPage() {
-        return "success";
     }
 
     @PostMapping("/delete")

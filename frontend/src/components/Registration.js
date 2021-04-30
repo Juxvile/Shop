@@ -101,7 +101,7 @@ class Registration extends React.Component{
                                 <Card.Footer align="right">
                                     <Button size="sm" variant="success" type="submit">
                                         Registry
-                                    </Button>{' '}
+                                    </Button>
                                     <Button size="sm" variant="info" type="reset">
                                         Reset
                                     </Button>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import NavigationBar from "./components/NavigationBar";
 import {Col, Container, Row} from 'react-bootstrap'
@@ -10,37 +10,37 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {SingleProduct} from './components/SingleProduct'
 import Registration from "./components/Registration";
 import Login from "./components/Login";
-import Dashboard from "./components/DashBoard"
-
 
 
 const App = () => {
+
+    const [hasAuth, setHasAuth] = useState(false);
 
     const marginTop = {
         marginTop: "20px",
     };
 
-  return (
-    <Router>
-      <NavigationBar/>
-      <Container>
-          <Row>
-              <Col lg={12} style={marginTop}>
-                  <Switch>
-                      <Route path="/" exact component={Welcome}/>
-                      <Route path="/add" exact component={Product}/>
-                      <Route path="/product" exact component={ProductList}/>
-                      <Route path="/product/:id" exact component={SingleProduct}/>
-                      <Route path="/registration" exact component={Registration}/>
-                      <Route path="/login" exact component={Login}/>
-                      <Route path="/dashboard" exact component={Dashboard}/>
-                  </Switch>
-              </Col>
-          </Row>
-      </Container>
-        <Footer/>
-    </Router>
-  );
+    return (
+        <Router>
+            <NavigationBar hasAuth={hasAuth} setHasAuth={setHasAuth}/>
+            <Container>
+                <Row>
+                    <Col lg={12} style={marginTop}>
+                        <Switch>
+                            <Route path="/" exact component={Welcome}/>
+                            <Route path="/add" exact component={Product}/>
+                            <Route path="/product" exact component={ProductList}/>
+                            <Route path="/product/:id" exact component={SingleProduct}/>
+                            <Route path="/registration" exact component={Registration}/>
+                            <Route path="/login" exact component={Login}><Login hasAuth={hasAuth}
+                                                                                setHasAuth={setHasAuth}/> </Route>
+                        </Switch>
+                    </Col>
+                </Row>
+            </Container>
+            <Footer/>
+        </Router>
+    );
 }
 
 export default App;

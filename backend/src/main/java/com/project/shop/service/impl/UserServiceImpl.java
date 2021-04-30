@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     private final JwtTokenProvider jwtTokenProvider;
     private final BCryptPasswordEncoder passwordEncoder;
     
-    // TODO: 27.04.2021 Переписать под Optional 
+    // TODO: 27.04.2021 Переписать под Optional + проверка на наличие в бд юзера уже существующего
     @Override
     public User register(User user) {
         Role roleUser = roleRepository.findByName("ROLE_USER");
@@ -46,7 +46,8 @@ public class UserServiceImpl implements UserService {
 
         return registeredUser;
     }
-
+    
+    // переписать, не проверяет пароль if (password exist)
     @Override
     public TokenResponseDto login(String username, String password) throws Exception {
         User user = this.findByUsername(username);
