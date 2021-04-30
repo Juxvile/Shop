@@ -11,12 +11,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @Configuration
 @Slf4j
-@EnableWebMvc
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     private final JwtTokenProvider jwtTokenProvider;

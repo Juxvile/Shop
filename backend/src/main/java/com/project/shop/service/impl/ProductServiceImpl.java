@@ -21,6 +21,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void add(Product product) {
         if (product.getName() == null && product.getPrice() == null) throw new NoRequiredFieldException();
+        log.info("IN add - product: {} successfully added", product);
         productRepository.save(product);
     }
 

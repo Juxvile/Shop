@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         if (user.getUsername() != null){
             Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
             if (userOptional.isPresent()) {
-                throw new RuntimeException("User is exist");
+                throw new RuntimeException("%s User is exist");
             }
         }
         Role roleUser = roleRepository.findByName("ROLE_USER");
