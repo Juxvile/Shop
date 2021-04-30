@@ -5,8 +5,6 @@ import NavLink from "react-bootstrap/NavLink";
 
 const NavigationBar = ({hasAuth, setHasAuth}) => (
 
-
-    // кнопка логаут, компонент кнопка (как навбар)
     <Navbar bg="dark" variant="dark">
         <Link to={""} className="navbar-brand">
             Gamer's Shop
