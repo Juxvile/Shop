@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -28,10 +29,15 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final BCryptPasswordEncoder passwordEncoder;
-    
-    // TODO: 27.04.2021 Переписать под Optional + проверка на наличие в бд юзера уже существующего
+
     @Override
     public User register(User user) {
+        if (user.getUsername() != null){
+            Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
+            if (userOptional.isPresent()) {
+                throw new RuntimeException("User is exist");
+            }
+        }
         Role roleUser = roleRepository.findByName("ROLE_USER");
         List<Role> userRoles = new ArrayList<>();
 
@@ -46,8 +52,7 @@ public class UserServiceImpl implements UserService {
 
         return registeredUser;
     }
-    
-    // переписать, не проверяет пароль if (password exist)
+
     @Override
     public TokenResponseDto login(String username, String password) throws Exception {
         User user = this.findByUsername(username);
@@ -88,7 +93,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private UsernameNotFoundException generateException(String loggerMessage, String exceptionMessage) {
-        log.warn(loggerMessage);
+        log.info(loggerMessage);
         return new UsernameNotFoundException(exceptionMessage);
     }
 }

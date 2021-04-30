@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private NotFoundException generateException(String loggerMessage, String exceptionMessage) {
-        log.warn(loggerMessage);
+        log.info(loggerMessage);
         return new NotFoundException(exceptionMessage);
     }
 }

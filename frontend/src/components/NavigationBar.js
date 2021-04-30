@@ -1,6 +1,7 @@
 import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import NavLink from "react-bootstrap/NavLink";
 
 const NavigationBar = ({hasAuth, setHasAuth}) => (
 
@@ -18,7 +19,7 @@ const NavigationBar = ({hasAuth, setHasAuth}) => (
         <Nav>
             {
                 hasAuth
-                    ? <Link onClick={()=>setHasAuth(false)} className="nav-link">Logout</Link>
+                    ? <NavLink onClick={()=>setHasAuth(false)} className="nav-link">Logout</NavLink>
                     : <><Link to={"/login"} className="nav-link">Login</Link> <Link to={"/registration"} className="nav-link">Registration</Link></>
             }
         </Nav>

@@ -24,6 +24,7 @@ class Login extends React.Component {
         }
     }
 
+
     render() {
         const {username, password} = this.state;
         const {hasAuth} = this.props;
@@ -62,6 +63,7 @@ class Login extends React.Component {
                             <Button size="sm" variant="success" type="button" onClick={this.handleFormSubmit}>
                                 Login
                             </Button>
+                            {' '}
                             <Button size="sm" variant="info" type="reset">
                                 Reset
                             </Button>

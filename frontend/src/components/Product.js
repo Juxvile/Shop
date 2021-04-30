@@ -87,7 +87,7 @@ export default class Product extends React.Component{
                         <Card.Body>
                             <Form.Row>
                                 <Form.Group as={Col}>
-                                    <Form.Label>Name</Form.Label>
+                                    <Form.Label>Name*</Form.Label>
                                     <Form.Control required autoComplete="off"
                                                   type="text" name="name"
                                                   value={name}
@@ -114,7 +114,7 @@ export default class Product extends React.Component{
                                                   placeholder="Enter amount" />
                                 </Form.Group>
                                 <Form.Group as={Col}>
-                                    <Form.Label>Price</Form.Label>
+                                    <Form.Label>Price*</Form.Label>
                                     <Form.Control required autoComplete="off"
                                                   type="text" name="price"
                                                   value={price}

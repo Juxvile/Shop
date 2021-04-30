@@ -33,7 +33,7 @@ const App = () => {
                             <Route path="/product/:id" exact component={SingleProduct}/>
                             <Route path="/registration" exact component={Registration}/>
                             <Route path="/login" exact component={Login}><Login hasAuth={hasAuth}
-                                                                                setHasAuth={setHasAuth}/> </Route>
+                                                                                    setHasAuth={setHasAuth}/> </Route>
                         </Switch>
                     </Col>
                 </Row>

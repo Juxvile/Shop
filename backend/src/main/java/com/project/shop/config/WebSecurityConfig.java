@@ -3,6 +3,7 @@ package com.project.shop.config;
 
 import com.project.shop.security.jwt.JwtConfigurer;
 import com.project.shop.security.jwt.JwtTokenProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +11,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 @Configuration
+@Slf4j
+@EnableWebMvc
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -41,6 +45,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .and()
             .apply(new JwtConfigurer(jwtTokenProvider));
     }
-
-
 }
