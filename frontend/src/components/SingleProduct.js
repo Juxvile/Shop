@@ -8,7 +8,6 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Carousel from "react-bootstrap/Carousel";
 
-
 class SingleProductContainer extends React.Component {
     constructor(props) {
         super(props);

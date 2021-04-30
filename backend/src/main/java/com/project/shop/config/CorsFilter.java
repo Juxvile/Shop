@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+// FIXME: 30.04.2021 Этот компонент необходим лишь тогда когда запускается бэкенд и фронтенд на разных серверах
 @Component
 public class CorsFilter extends OncePerRequestFilter {
 

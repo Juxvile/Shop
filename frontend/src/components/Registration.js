@@ -15,7 +15,7 @@ class Registration extends React.Component{
 
     state = {
         ... this.initialState,
-        show: false,
+        show: false
     };
 
     componentDidMount() {

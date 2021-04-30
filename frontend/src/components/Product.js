@@ -5,9 +5,6 @@ import MyToast from "./MyToast";
 import axios from "axios";
 
 
-
-
-
 export default class Product extends React.Component{
 
     constructor(props) {

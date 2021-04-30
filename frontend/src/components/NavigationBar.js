@@ -18,7 +18,7 @@ const NavigationBar = ({hasAuth, setHasAuth}) => (
         <Nav>
             {
                 hasAuth
-                    ? <a onClick={()=>setHasAuth(false)} className="nav-link">Logout</a>
+                    ? <Link onClick={()=>setHasAuth(false)} className="nav-link">Logout</Link>
                     : <><Link to={"/login"} className="nav-link">Login</Link> <Link to={"/registration"} className="nav-link">Registration</Link></>
             }
         </Nav>

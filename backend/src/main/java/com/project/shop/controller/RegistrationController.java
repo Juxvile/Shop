@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/registration")
 public class RegistrationController {
 
-    public final UserServiceImpl userServiceImpl;
+    private final UserServiceImpl userServiceImpl;
 
     @PostMapping
     public void registrationUser(@RequestBody User user) {
