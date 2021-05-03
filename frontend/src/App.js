@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './App.css';
+import './css/App.css';
 import NavigationBar from "./components/NavigationBar";
 import {Col, Container, Row} from 'react-bootstrap'
 import Welcome from "./components/Welcome";

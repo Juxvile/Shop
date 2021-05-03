@@ -42,7 +42,7 @@
 }
 
 body{
-  background-image: url("pics/wp.jpg");
+  background-image: url("/src/pics/wp.jpg");
 }
 
 .games {
@@ -160,7 +160,7 @@ body{
 /*Welcome (home) page*/
 .helloJumbotron {
   border: 1px solid #f869f8;
-  background-image: url("pics/games.jpeg");
+  background-image: url("/src/pics/games.jpeg");
   text-align: center;
   color: azure;
   line-height: 57px;

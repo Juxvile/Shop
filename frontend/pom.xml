@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 
+
     <artifactId>frontend</artifactId>
     <properties>
         <node.version>v14.16.0</node.version>
