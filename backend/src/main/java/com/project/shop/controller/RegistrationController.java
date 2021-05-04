@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/registration")
 public class RegistrationController {
-
+    
     private final UserService userService;
 
     @PostMapping

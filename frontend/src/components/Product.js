@@ -9,18 +9,19 @@ export default class Product extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = this.initialState;
+        this.state = {
+            show: false,
+            fields: {
+                name:'', description: '', count: '', price: '', filename: '', genre: '',
+                trailer: '', platform: '', developer: '', releaseDate: '', description2: '', sysReq: '',
+                screenshot1: '', screenshot2: '', screenshot3: ''
+            },
+        }
         this.state.show = false;
         this.gameChange = this.gameChange.bind(this);
         this.submitGame = this.submitGame.bind(this);
     }
 
-    initialState = {
-        name:'', description: '', count: '', price: '', filename: '', genre: '',
-        trailer: '', platform: '', developer: '', releaseDate: '', description2: '', sysReq: '',
-        screenshot1: '', screenshot2: '', screenshot3: ''
-
-    }
 
     resetGame = () => {
         this.setState(() => this.initialState);
@@ -57,7 +58,7 @@ export default class Product extends React.Component{
                 }
             });
 
-        this.setState(this.initialState);
+        this.setState(this.fields);
     }
 
 
@@ -68,6 +69,7 @@ export default class Product extends React.Component{
     }
 
     render() {
+
         const {name,description,count,price,filename,genre,
             trailer, platform, releaseDate, developer, description2,
             sysReq, screenshot1, screenshot2,screenshot3} = this.state;
@@ -101,7 +103,6 @@ export default class Product extends React.Component{
                                                   placeholder="Enter Description" />
                                 </Form.Group>
                             </Form.Row>
-
                             <Form.Row>
                                 <Form.Group as={Col}>
                                     <Form.Label>Count</Form.Label>

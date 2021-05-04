@@ -78,7 +78,7 @@
                             <outputDirectory>${project.build.outputDirectory}/resources</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}/target/build</directory>
+                                    <directory>${basedir}/target/build/</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
